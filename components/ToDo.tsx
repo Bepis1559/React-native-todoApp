@@ -1,73 +1,47 @@
-import {
-  Box,
-  CheckIcon,
-  Checkbox,
-  CheckboxIcon,
-  CheckboxIndicator,
-  CheckboxLabel,
-} from "@gluestack-ui/themed";
 import { useState, type ReactElement, useRef } from "react";
 import { Motion } from "@legendapp/motion";
+import { ActualCheckBox } from "./ActualCheckBox";
+import { CheckBoxTextContent } from "./CheckBoxTextContent";
 
 type props = {
   id: string;
   value: string;
+  dueDate?: string;
 };
-export function ToDo({ value, id }: props): ReactElement {
-  const [done, setDone] = useState(false);
+export function ToDo({ value, dueDate, id }: props): ReactElement {
+  const [completed, setCompleted] = useState(false);
+  // ADD OVERDUE NEXT
+  // add modal on click
   const labelCrossingAnimationDuration = useRef(300);
+  const todoAnimationTime = useRef(1200);
+  const verticalDistance = useRef(10);
   function handleOnChange() {
-    setDone((prev) => !prev);
+    setCompleted((prev) => !prev);
   }
   return (
     <Motion.View
-      animate={{ y: done ? 300 : 0 }}
+      style={{
+        flexDirection: "row",
+        marginBottom: verticalDistance.current,
+        paddingVertical: verticalDistance.current,
+        paddingHorizontal: 10,
+        borderRadius: 10,
+        backgroundColor: "rgb(34, 34, 34)",
+      }}
+      animate={{ y: completed ? 300 : 0 }}
       transition={{
         type: "timing",
-        duration: 1500,
+        duration: todoAnimationTime.current,
         easing: "linear",
-        delay: labelCrossingAnimationDuration.current * 2,
+        delay: labelCrossingAnimationDuration.current * 1.5,
       }}>
-      <Box
-        sx={{
-          marginBottom: 15,
-          paddingVertical: 15,
-          paddingHorizontal: 30,
-          borderRadius: 10,
-          backgroundColor: "rgb(23, 23, 23)",
-        }}>
-        <Checkbox
-          size="md"
-          aria-label={value}
-          value={value}
-          accessibilityLabel="Checkbox"
-          onChange={handleOnChange}
-          id={id}>
-          <CheckboxIndicator sx={{ borderRadius: "$full" }} mr="$2">
-            <CheckboxIcon as={CheckIcon} />
-          </CheckboxIndicator>
-          <CheckboxLabel>
-            <Motion.View
-              animate={{ scaleX: done ? 1 : 0 }}
-              transition={{
-                type: "timing",
-                duration: labelCrossingAnimationDuration.current,
-                easing: "linear",
-              }}
-              style={{
-                width: "100%",
-                height: 1,
-                position: "absolute",
-                backgroundColor: "white",
-                left: 0,
-                top: "50%",
-                transformOrigin: "left",
-              }}></Motion.View>
-
-            {value}
-          </CheckboxLabel>
-        </Checkbox>
-      </Box>
+      <ActualCheckBox value={value} handleOnChange={handleOnChange} id={id} />
+      <CheckBoxTextContent
+        isTodoCompleted={completed}
+        animationDuration={labelCrossingAnimationDuration.current}
+        value={value}
+        dueDate={dueDate}
+      />
     </Motion.View>
   );
 }

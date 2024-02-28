@@ -11,8 +11,8 @@ export function AllToDos(): ReactElement {
       value={values}
       onChange={setValues}
       nativeID="checkbox-group">
-      <ToDo id="1" value="Do the dishes" />
-      <ToDo id="2" value="Do the laundry" />
+      <ToDo dueDate="Feb 27, 5:24PM" id="1" value="Do the dishes" />
+      <ToDo dueDate="Mar 17, 5:24PM" id="2" value="Do the laundry" />
       <ToDo id="3" value="Do the homework" />
     </CheckboxGroup>
   );
