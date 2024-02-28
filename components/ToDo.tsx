@@ -26,7 +26,7 @@ export function ToDo({ value, id }: props): ReactElement {
         type: "timing",
         duration: 1500,
         easing: "linear",
-        delay: labelCrossingAnimationDuration.current,
+        delay: labelCrossingAnimationDuration.current * 2,
       }}>
       <Box
         sx={{
@@ -42,7 +42,7 @@ export function ToDo({ value, id }: props): ReactElement {
           value={value}
           accessibilityLabel="Checkbox"
           onChange={handleOnChange}
-          nativeID={id}>
+          id={id}>
           <CheckboxIndicator sx={{ borderRadius: "$full" }} mr="$2">
             <CheckboxIcon as={CheckIcon} />
           </CheckboxIndicator>

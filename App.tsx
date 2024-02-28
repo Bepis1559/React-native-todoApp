@@ -4,9 +4,8 @@ import { VStack } from "@gluestack-ui/themed";
 import React, { useState } from "react";
 import { ToDo } from "./components/ToDo";
 import { AppContainer } from "./components/AppContainer";
+import { AllToDos } from "./components/AllToDos";
 export default function App() {
-  const [values, setValues] = useState([""]);
-
   return (
     <AppContainer>
       <VStack
@@ -14,15 +13,7 @@ export default function App() {
         marginLeft={16}
         marginRight="auto"
         marginTop={"$16"}>
-        <CheckboxGroup
-          accessibilityLabel="Checkbox Group"
-          value={values}
-          onChange={setValues}
-          nativeID="checkbox-group">
-          <ToDo id="1" value="Do the dishes" />
-          <ToDo id="2" value="Do the laundry" />
-          <ToDo id="3" value="Do the homework" />
-        </CheckboxGroup>
+        <AllToDos />
       </VStack>
     </AppContainer>
   );
