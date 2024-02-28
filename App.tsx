@@ -19,9 +19,9 @@ export default function App() {
           value={values}
           onChange={setValues}
           nativeID="checkbox-group">
-          <ToDo value="Do the dishes" />
-          <ToDo value="Do the laundry" />
-          <ToDo value="Do the homework" />
+          <ToDo id="1" value="Do the dishes" />
+          <ToDo id="2" value="Do the laundry" />
+          <ToDo id="3" value="Do the homework" />
         </CheckboxGroup>
       </VStack>
     </AppContainer>
