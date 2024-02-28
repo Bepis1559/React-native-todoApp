@@ -2,22 +2,26 @@ import { CheckboxGroup } from "@gluestack-ui/themed";
 
 import { VStack } from "@gluestack-ui/themed";
 import React, { useState } from "react";
-import { MyCheckBox } from "./components/MyCheckBox";
+import { ToDo } from "./components/ToDo";
 import { AppContainer } from "./components/AppContainer";
 export default function App() {
   const [values, setValues] = useState([""]);
 
   return (
     <AppContainer>
-      <VStack marginStart={16} marginEnd="auto" marginTop={"$16"} space="md">
+      <VStack
+        alignItems="flex-start"
+        marginLeft={16}
+        marginRight="auto"
+        marginTop={"$16"}>
         <CheckboxGroup
           accessibilityLabel="Checkbox Group"
           value={values}
           onChange={setValues}
           nativeID="checkbox-group">
-          <MyCheckBox value="Do the dishes" />
-          <MyCheckBox value="Do the laundry" />
-          <MyCheckBox value="Do the homework" />
+          <ToDo value="Do the dishes" />
+          <ToDo value="Do the laundry" />
+          <ToDo value="Do the homework" />
         </CheckboxGroup>
       </VStack>
     </AppContainer>
