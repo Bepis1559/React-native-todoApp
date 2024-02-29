@@ -16,6 +16,7 @@ export function ToDo({ value, dueDate, id }: props): ReactElement {
   const labelCrossingAnimationDuration = useRef(300);
   const todoAnimationTime = useRef(700);
   const handleOnChange = () => setCompleted((prev) => !prev);
+  // add addButton
   // add modal on click
   // add submit to db button , later on
 
