@@ -17,7 +17,11 @@ export function CheckBoxTextContent({
 }: CheckBoxTextContentProps): ReactElement {
   return (
     <Box>
-      <Text>
+      <Text
+        sx={{
+          width: "max-content",
+          position: "relative",
+        }}>
         <AnimatedTextCross
           isTodoCompleted={isTodoCompleted}
           animationDuration={animationDuration}
@@ -25,7 +29,9 @@ export function CheckBoxTextContent({
         {value}
       </Text>
       <br />
-      <Text sx={{ fontSize: "$xs", color: "$coolGray300" }}>{dueDate}</Text>
+      <Text sx={{ fontSize: "$xs", color: "$coolGray300" }}>
+        {dueDate?.toString()}
+      </Text>
     </Box>
   );
 }

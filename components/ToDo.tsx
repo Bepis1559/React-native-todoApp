@@ -12,9 +12,11 @@ export function ToDo({ value, dueDate, id }: props): ReactElement {
   const [completed, setCompleted] = useState(false);
   // ADD OVERDUE NEXT
   // add modal on click
+  // add submit to db button , later on
+
   const labelCrossingAnimationDuration = useRef(300);
   const todoAnimationTime = useRef(1200);
-  const verticalDistance = useRef(10);
+  const verticalDistance = useRef(13.5);
   function handleOnChange() {
     setCompleted((prev) => !prev);
   }
@@ -22,6 +24,8 @@ export function ToDo({ value, dueDate, id }: props): ReactElement {
     <Motion.View
       style={{
         flexDirection: "row",
+
+        alignItems: "center",
         marginBottom: verticalDistance.current,
         paddingVertical: verticalDistance.current,
         paddingHorizontal: 10,
