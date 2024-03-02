@@ -1,6 +1,6 @@
 import type { StyleProp, ViewStyle } from "react-native";
 
-const verticalDistance = 13.5;
+const verticalDistance = 11.5;
 export const todoStyle: StyleProp<ViewStyle> = {
   shadowColor: "black",
   //   ios and web

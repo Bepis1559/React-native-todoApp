@@ -1,6 +1,6 @@
 import { AddIcon, Box, Icon } from "@gluestack-ui/themed";
 import { type ReactElement } from "react";
-import { addBtnStyle } from "../app/styles/AddBtn";
+import { addBtnStyle } from "../styles/AddBtn";
 import { Motion } from "@legendapp/motion";
 
 export function AddBtn(): ReactElement {

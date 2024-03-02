@@ -3,7 +3,7 @@ import { Motion } from "@legendapp/motion";
 import { ActualCheckBox } from "./ActualCheckBox";
 import { CheckBoxTextContent } from "./CheckBoxTextContent";
 import { Box } from "@gluestack-ui/themed";
-import { todoStyle } from "../app/styles/ToDo";
+import { todoStyle } from "../styles/ToDo";
 
 type props = {
   id: string;

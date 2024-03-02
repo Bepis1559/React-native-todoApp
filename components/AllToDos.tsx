@@ -1,7 +1,7 @@
 import { CheckboxGroup } from "@gluestack-ui/themed";
 import { useState, type ReactElement } from "react";
 import { ToDo } from "./ToDo";
-import { formatDate } from "../app/helpers/formatDate";
+import { formatDate } from "../helpers/formatDate";
 
 export function AllToDos(): ReactElement {
   const [values, setValues] = useState([""]);
