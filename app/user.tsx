@@ -1,6 +1,11 @@
 import { ReactElement } from "react";
-import { Text } from "@gluestack-ui/themed";
+import { Box, Text } from "@gluestack-ui/themed";
+import { FullPageThemedBox } from "../wrappers/FullPageThemedBox";
 
 export default function Page(): ReactElement {
-  return <Text>Hello from User page</Text>;
+  return (
+    <FullPageThemedBox>
+      <Text>Hello from User page</Text>
+    </FullPageThemedBox>
+  );
 }

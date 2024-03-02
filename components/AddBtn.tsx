@@ -5,7 +5,7 @@ import { Motion } from "@legendapp/motion";
 
 export function AddBtn(): ReactElement {
   return (
-    <Motion.Pressable style={{ position: "absolute", bottom: 20, right: 20 }}>
+    <Motion.Pressable style={{ position: "absolute", bottom: 50, right: 20 }}>
       <Motion.View whileTap={{ scale: 1.15 }}>
         <Box style={addBtnStyle}>
           <Icon

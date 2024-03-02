@@ -4,6 +4,7 @@ import { config } from "../gluestack.config";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useCallback } from "react";
 import { useFonts } from "expo-font";
+import { getBackgroundColor, getTextColor } from "../styles/colors";
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
@@ -19,11 +20,31 @@ export default function RootLayout() {
   if (!fontsLoaded && !fontError) {
     return null;
   }
+  const textColor = getTextColor();
+  const bgColor = getBackgroundColor();
   return (
     <GluestackUIProvider colorMode="dark" config={config}>
-      <SafeAreaProvider onLayout={onLayoutRootView}>
+      <SafeAreaProvider
+        style={{ backgroundColor: bgColor }}
+        onLayout={onLayoutRootView}>
         <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: false,
+              navigationBarColor: bgColor,
+              headerStyle: { backgroundColor: bgColor },
+            }}
+          />
+          <Stack.Screen
+            name="user"
+            options={{
+              headerShadowVisible: false,
+              headerTintColor: textColor,
+              title: "",
+              headerStyle: { backgroundColor: bgColor },
+            }}
+          />
         </Stack>
       </SafeAreaProvider>
     </GluestackUIProvider>

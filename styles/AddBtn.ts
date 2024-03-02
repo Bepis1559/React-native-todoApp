@@ -6,7 +6,7 @@ export const addBtnStyle: StyleProp<ViewStyle> = {
   shadowOpacity: 1, // blur
   shadowRadius: 20, // spread
   //
-  elevation: 10,
+  elevation: 5,
   alignItems: "center",
   borderRadius: 100,
   justifyContent: "center",
