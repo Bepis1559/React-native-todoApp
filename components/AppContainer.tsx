@@ -29,6 +29,7 @@ export function AppContainer({ children }: props): ReactElement | null {
     <GluestackUIProvider colorMode="dark" config={config}>
       <Box
         onLayout={onLayoutRootView}
+        position="relative"
         w={"100%"}
         h="100%"
         sx={{

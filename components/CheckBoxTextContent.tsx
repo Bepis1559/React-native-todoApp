@@ -33,6 +33,7 @@ export function CheckBoxTextContent({
       </Box>
       <Box>
         <Text
+          userSelect="none"
           fontSize={"$xs"}
           display={dueDate ? "flex" : "none"}
           color={isOverdue ? "#cf2b39" : "$coolGray400"}>

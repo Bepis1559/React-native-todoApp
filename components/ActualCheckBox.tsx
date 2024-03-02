@@ -22,11 +22,11 @@ export function ActualCheckBox({
       size="md"
       aria-label={value}
       value={value}
-      accessibilityLabel="Checkbox"
+      role="checkbox"
       onChange={handleOnChange}
       id={id}>
       <CheckboxIndicator sx={{ borderRadius: "$full" }} mr="$2">
-        <CheckboxIcon as={CheckIcon} />
+        <CheckboxIcon userSelect="none" as={CheckIcon} />
       </CheckboxIndicator>
     </Checkbox>
   );
