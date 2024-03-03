@@ -5,7 +5,7 @@ import { useLocalSearchParams } from "expo-router";
 import { Box, Text } from "@gluestack-ui/themed";
 
 type searchParamsType = {
-  id: string | number;
+  id: string;
 };
 export default function Page(): ReactElement {
   const { id } = useLocalSearchParams() as searchParamsType;

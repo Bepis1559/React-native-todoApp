@@ -32,7 +32,6 @@ export default function RootLayout() {
             options={{
               headerShown: false,
               navigationBarColor: bgColor,
-              headerStyle: { backgroundColor: bgColor },
             }}
           />
           <Stack.Screen
