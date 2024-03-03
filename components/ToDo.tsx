@@ -5,7 +5,7 @@ import { CheckBoxTextContent } from "./CheckBoxTextContent";
 import { Box } from "@gluestack-ui/themed";
 import { todoStyle } from "../styles/ToDo";
 import { CheckBoxDueDate } from "./CheckBoxDueDate";
-import { Link } from "expo-router";
+import { router } from "expo-router";
 
 type props = {
   id: string;
@@ -19,13 +19,10 @@ export function ToDo({ value, dueDate, id }: props): ReactElement {
   const todoAnimationTime = useRef(700);
   const dynamicPageRoute = useRef(`todos/${id}`);
   const handleOnChange = () => setCompleted((prev) => !prev);
-  // add addButton
-  // add modal on click
-  // add submit to db button
 
   return (
-    <Motion.Pressable>
-      <Motion.View whileTap={{ scale: 0.95 }}>
+    <Motion.Pressable onPress={() => router.push(dynamicPageRoute.current)}>
+      <Motion.View whileTap={{ scale: 0.9 }}>
         <Motion.View
           animate={{ y: completed ? 300 : 0 }}
           transition={{
@@ -34,7 +31,7 @@ export function ToDo({ value, dueDate, id }: props): ReactElement {
             easing: "linear",
             delay: labelCrossingAnimationDuration.current * 1.5,
           }}>
-          <Link style={todoStyle} href={dynamicPageRoute.current}>
+          <Box style={todoStyle}>
             <ActualCheckBox
               value={value}
               handleOnChange={handleOnChange}
@@ -48,7 +45,7 @@ export function ToDo({ value, dueDate, id }: props): ReactElement {
               />
               <CheckBoxDueDate dueDate={dueDate} />
             </Box>
-          </Link>
+          </Box>
         </Motion.View>
       </Motion.View>
     </Motion.Pressable>
