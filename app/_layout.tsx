@@ -2,7 +2,7 @@ import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { SplashScreen, Stack } from "expo-router";
 import { config } from "../gluestack.config";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useFonts } from "expo-font";
 import { getBackgroundColor, getTextColor } from "../styles/colors";
 
@@ -12,16 +12,15 @@ export default function RootLayout() {
   });
 
   const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded || fontError) {
-      await SplashScreen.hideAsync();
-    }
+    if (fontsLoaded || fontError) await SplashScreen.hideAsync();
   }, [fontsLoaded, fontError]);
 
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
-  const textColor = getTextColor();
+  if (!fontsLoaded && !fontError) return null;
+
+  // const textColor = useMemo(getTextColor, []);
+  // const bgColor = useMemo(getBackgroundColor, []);
   const bgColor = getBackgroundColor();
+  const textColor = getTextColor();
   return (
     <GluestackUIProvider colorMode="dark" config={config}>
       <SafeAreaProvider
@@ -37,7 +36,7 @@ export default function RootLayout() {
             }}
           />
           <Stack.Screen
-            name="user"
+            name="todos/[id]"
             options={{
               headerShadowVisible: false,
               headerTintColor: textColor,
