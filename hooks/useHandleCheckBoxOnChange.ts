@@ -8,6 +8,7 @@ type returnType = [tempCompleted: boolean, handleOnChange: () => void];
 export function useHandleCheckBoxOnChange(
   id: string,
   isCompleted: boolean,
+  timeout: number,
 ): returnType {
   const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -27,7 +28,7 @@ export function useHandleCheckBoxOnChange(
           }
         });
       });
-    }, 50);
+    }, timeout);
   }
 
   useEffect(() => {
