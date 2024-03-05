@@ -5,3 +5,8 @@ interface Itodo {
   dueDate?: string;
 }
 type todosGroupsNames = "overdue" | "later" | "no date" | "completed";
+
+type todosSection = {
+  title: string;
+  data: Todo[];
+};

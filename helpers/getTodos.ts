@@ -17,24 +17,24 @@ export function getTodos() {
   const todo9 = new Todo("Relax and unwind");
   const todo10 = new Todo("Listen to music");
   const todo11 = new Todo("Practice a hobby");
-  const todo12 = new Todo("Explore a new place");
+  const todo12 = new Todo("Go for a ride");
   const todo13 = new Todo("Explore a new place");
-  const todo14 = new Todo("Explore a new place", date3);
-  const todo15 = new Todo("Explore a new place");
-  const todo16 = new Todo("Explore a new place");
-  const todo17 = new Todo("Explore a new place");
+  const todo14 = new Todo("Buy bread", date3);
+  const todo15 = new Todo("Go to gym");
+  const todo16 = new Todo("Finish project");
+  const todo17 = new Todo("Build cool stuff");
   const todo18 = new Todo("Last one");
 
   const allTodos = [
     todo1,
-    // todo2,
+    todo2,
     todo3,
     todo4,
     todo5,
     todo6,
-    // todo7,
-    // todo8,
-    // todo9,
+    todo7,
+    todo8,
+    todo9,
     todo10,
     todo11,
     todo12,

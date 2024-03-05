@@ -1,12 +1,10 @@
-import { type ReactElement, memo, useState, useRef, useEffect } from "react";
+import { type ReactElement, memo } from "react";
 import { ActualCheckBox } from "./ActualCheckBox";
 import { CheckBoxTextContent } from "./CheckBoxTextContent";
 import { Box } from "@gluestack-ui/themed";
 import { CheckBoxDueDate } from "./CheckBoxDueDate";
 import { ToDoContainer } from "../wrappers/ToDoContainer";
-import { useAtom } from "jotai";
-import { allTodosAtom } from "../context/todosContext";
-import { LayoutAnimation } from "react-native";
+import { useHandleCheckBoxOnChange } from "../hooks/useHandleCheckBoxOnChange";
 
 type props = {
   id: string;
@@ -16,32 +14,10 @@ type props = {
 };
 export function Component(props: props): ReactElement {
   const { value, dueDate, id, isCompleted } = props;
-  const [tempCompleted, setTempCompleted] = useState(isCompleted);
-  const [, setAllTodos] = useAtom(allTodosAtom);
-  const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
-  function handleOnChange() {
-    setTempCompleted((prev) => !prev);
-    timeoutId.current = setTimeout(() => {
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
-      setAllTodos((prev) => {
-        return prev.map((todo) => {
-          if (todo.id === id) {
-            return { ...todo, isCompleted: !isCompleted };
-          } else {
-            return todo;
-          }
-        });
-      });
-    }, 50);
-  }
-  useEffect(() => {
-    return () => {
-      if (timeoutId.current) {
-        clearTimeout(timeoutId.current);
-      }
-    };
-  }, []);
-
+  const [tempCompleted, handleOnChange] = useHandleCheckBoxOnChange(
+    id,
+    isCompleted,
+  );
   return (
     <ToDoContainer id={id}>
       <ActualCheckBox

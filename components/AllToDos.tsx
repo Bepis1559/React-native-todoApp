@@ -1,45 +1,11 @@
 import { SectionList, Text, View } from "@gluestack-ui/themed";
 import { type ReactElement } from "react";
-import { useAtom } from "jotai";
-import { allTodosAtom } from "../context/todosContext";
-import { isPast } from "date-fns";
-import { todoDateFormat } from "../helpers/todoDateFormat";
 import { ToDo } from "./ToDo";
 import { Todo } from "../models/Todo";
+import { useAllTodos } from "../hooks/useAllTodos";
 
-type section = {
-  title: string;
-  data: Todo[];
-};
 export function AllToDos(): ReactElement {
-  const [allTodos] = useAtom(allTodosAtom);
-  const sections: section[] = [
-    {
-      title: "Overdue",
-      data: allTodos.filter(
-        ({ dueDate, isCompleted }) =>
-          dueDate && isPast(todoDateFormat(dueDate)) && !isCompleted,
-      ),
-    },
-    {
-      title: "Later",
-      data: allTodos.filter(
-        ({ isCompleted, dueDate }) =>
-          dueDate && !isPast(todoDateFormat(dueDate)) && !isCompleted,
-      ),
-    },
-
-    {
-      title: "No date",
-      data: allTodos.filter(
-        ({ dueDate, isCompleted }) => !dueDate && !isCompleted,
-      ),
-    },
-    {
-      title: "Completed",
-      data: allTodos.filter(({ isCompleted }) => isCompleted),
-    },
-  ];
+  const [sections] = useAllTodos();
 
   return (
     <SectionList
@@ -63,7 +29,7 @@ export function AllToDos(): ReactElement {
         );
       }}
       renderSectionHeader={({ section }) => {
-        const { title } = section as section;
+        const { title } = section as todosSection;
         return (
           <Text
             style={{
