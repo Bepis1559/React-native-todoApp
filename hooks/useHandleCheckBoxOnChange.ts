@@ -1,10 +1,15 @@
 import { useAtom } from "jotai";
 import { useEffect, useRef, useState } from "react";
-import { LayoutAnimation } from "react-native";
+import { LayoutAnimation, Platform, UIManager } from "react-native";
 import { allTodosAtom } from "../context/todosContext";
 
 type returnType = [tempCompleted: boolean, handleOnChange: () => void];
 
+if (Platform.OS === "android") {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
 export function useHandleCheckBoxOnChange(
   id: string,
   isCompleted: boolean,
@@ -19,6 +24,7 @@ export function useHandleCheckBoxOnChange(
     setTempCompleted((prev) => !prev);
     timeoutId.current = setTimeout(() => {
       LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+
       setAllTodos((prev) => {
         return prev.map((todo) => {
           if (todo.id === id) {
