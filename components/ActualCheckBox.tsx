@@ -4,16 +4,18 @@ import {
   CheckboxIcon,
   CheckboxIndicator,
 } from "@gluestack-ui/themed";
-import { type ReactElement } from "react";
+import { type ReactElement, memo } from "react";
 
 type ActualCheckBoxProps = {
   value: string;
   id: string;
-  handleOnChange: (isSelected: boolean) => void | undefined;
+  completed: boolean;
+  handleOnChange(): void;
 };
 
-export function ActualCheckBox({
+function Component({
   value,
+  completed,
   handleOnChange,
   id,
 }: ActualCheckBoxProps): ReactElement {
@@ -21,13 +23,19 @@ export function ActualCheckBox({
     <Checkbox
       size="md"
       aria-label={value}
-      value={value}
+      value={completed ? "checked" : "unchecked"}
       role="checkbox"
+      isChecked={completed}
       onChange={handleOnChange}
       id={id}>
-      <CheckboxIndicator sx={{ borderRadius: "$full" }} mr="$2">
+      <CheckboxIndicator
+        height={22}
+        width={22}
+        sx={{ borderRadius: "$full", marginLeft: 2, marginRight: 5 }}>
         <CheckboxIcon userSelect="none" as={CheckIcon} />
       </CheckboxIndicator>
     </Checkbox>
   );
 }
+
+export const ActualCheckBox = memo(Component);

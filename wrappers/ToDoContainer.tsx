@@ -1,34 +1,17 @@
 import { Motion } from "@legendapp/motion";
 import { router } from "expo-router";
-import { type ReactNode, type ReactElement, useRef } from "react";
-import { todoStyle } from "../styles/ToDo";
+import { type ReactNode, type ReactElement, memo, useRef } from "react";
+import { todoStyle } from "../styles/ToDoStyle";
 
 type ToDoContainerProps = {
   id: string;
   children: ReactNode;
-  completed: boolean;
-  labelCrossingAnimationDuration: number;
 };
-export function ToDoContainer({
-  children,
-  id,
-  completed,
-  labelCrossingAnimationDuration,
-}: ToDoContainerProps): ReactElement {
-  const todoAnimationTime = useRef(700);
-  const dynamicPageRoute = useRef(`todos/${id}`);
-
+function Component({ children, id }: ToDoContainerProps): ReactElement {
   return (
     <Motion.Pressable>
-      <Motion.View
-        animate={{ y: completed ? 300 : 0 }}
-        transition={{
-          type: "timing",
-          duration: todoAnimationTime.current,
-          easing: "linear",
-          delay: labelCrossingAnimationDuration * 1.5,
-        }}>
-        <Motion.Pressable onPress={() => router.push(dynamicPageRoute.current)}>
+      <Motion.View>
+        <Motion.Pressable onPress={() => router.push(`todos/${id}`)}>
           <Motion.View style={todoStyle} whileTap={{ scale: 0.9 }}>
             {children}
           </Motion.View>
@@ -37,3 +20,4 @@ export function ToDoContainer({
     </Motion.Pressable>
   );
 }
+export const ToDoContainer = memo(Component);

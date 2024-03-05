@@ -1,22 +1,81 @@
-import { CheckboxGroup } from "@gluestack-ui/themed";
-import { useState, type ReactElement } from "react";
+import { SectionList, Text, View } from "@gluestack-ui/themed";
+import { type ReactElement } from "react";
+import { useAtom } from "jotai";
+import { allTodosAtom } from "../context/todosContext";
+import { isPast } from "date-fns";
+import { todoDateFormat } from "../helpers/todoDateFormat";
 import { ToDo } from "./ToDo";
-import { formatDate } from "../helpers/formatDate";
+import { Todo } from "../models/Todo";
 
+type section = {
+  title: string;
+  data: Todo[];
+};
 export function AllToDos(): ReactElement {
-  const [values, setValues] = useState([""]);
-  const date1 = formatDate(new Date(2022, 1, 25, 13, 7));
-  const date2 = formatDate(new Date(2024, 4, 17, 17, 24));
+  const [allTodos] = useAtom(allTodosAtom);
+  const sections: section[] = [
+    {
+      title: "Overdue",
+      data: allTodos.filter(
+        ({ dueDate, isCompleted }) =>
+          dueDate && isPast(todoDateFormat(dueDate)) && !isCompleted,
+      ),
+    },
+    {
+      title: "Later",
+      data: allTodos.filter(
+        ({ isCompleted, dueDate }) =>
+          dueDate && !isPast(todoDateFormat(dueDate)) && !isCompleted,
+      ),
+    },
+
+    {
+      title: "No date",
+      data: allTodos.filter(
+        ({ dueDate, isCompleted }) => !dueDate && !isCompleted,
+      ),
+    },
+    {
+      title: "Completed",
+      data: allTodos.filter(({ isCompleted }) => isCompleted),
+    },
+  ];
 
   return (
-    <CheckboxGroup
-      accessibilityLabel="Checkbox Group"
-      value={values}
-      onChange={setValues}
-      nativeID="checkbox-group">
-      <ToDo dueDate={date1} id="1" value="Do the dishes" />
-      <ToDo dueDate={date2} id="2" value="Do the laundry" />
-      <ToDo id="3" value="Do the homework" />
-    </CheckboxGroup>
+    <SectionList
+      marginBottom={0}
+      paddingHorizontal={10}
+      paddingTop={10}
+      sections={sections}
+      contentContainerStyle={{ paddingBottom: 60 }}
+      ItemSeparatorComponent={() => <View height={15} />}
+      keyExtractor={(item) => (item as Todo).id}
+      renderItem={({ item }) => {
+        const { id, value, dueDate, isCompleted } = item as Todo;
+        return (
+          <ToDo
+            isCompleted={isCompleted}
+            key={id}
+            id={id}
+            value={value}
+            dueDate={dueDate}
+          />
+        );
+      }}
+      renderSectionHeader={({ section }) => {
+        const { title } = section as section;
+        return (
+          <Text
+            style={{
+              textTransform: "uppercase",
+              marginLeft: 5,
+              marginTop: 10,
+              marginBottom: 10,
+            }}>
+            {title}
+          </Text>
+        );
+      }}
+    />
   );
 }

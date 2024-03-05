@@ -1,6 +1,6 @@
 import { Box, Text } from "@gluestack-ui/themed";
 import { AnimatedTextCross } from "./AnimatedTextCross";
-import { type ReactElement } from "react";
+import { useRef, type ReactElement } from "react";
 
 type CheckBoxTextContentProps = {
   isTodoCompleted: boolean;
@@ -15,13 +15,15 @@ export function CheckBoxTextContent({
 }: CheckBoxTextContentProps): ReactElement {
   return (
     <Box alignSelf="flex-start">
-      <Box position="absolute" top={0} left={0} right={0} bottom={0}>
+      <Box position="absolute" top={0} left={0} right={10} bottom={0}>
         <AnimatedTextCross
           isTodoCompleted={isTodoCompleted}
           animationDuration={animationDuration}
         />
       </Box>
-      <Text>{value}</Text>
+      <Text mr={10} numberOfLines={1} ellipsizeMode="tail">
+        {value}
+      </Text>
     </Box>
   );
 }

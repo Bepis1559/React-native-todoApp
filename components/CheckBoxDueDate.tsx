@@ -1,6 +1,7 @@
 import { Box, Text } from "@gluestack-ui/themed";
 import { isPast, parse } from "date-fns";
 import { useMemo, type ReactElement } from "react";
+import { todoDateFormat } from "../helpers/todoDateFormat";
 
 type CheckBoxDueDateProps = {
   dueDate?: string;
@@ -8,10 +9,10 @@ type CheckBoxDueDateProps = {
 export function CheckBoxDueDate({
   dueDate,
 }: CheckBoxDueDateProps): ReactElement {
-  const handleDueDate = () =>
-    dueDate ? parse(dueDate, "MMM d, yyyy, h:mm aa", new Date()) : null;
+  const parseStringDueDateToDateObject = () =>
+    dueDate ? todoDateFormat(dueDate) : null;
+  const parsedDate = useMemo(parseStringDueDateToDateObject, []);
   const handleIsOverdue = () => (parsedDate ? isPast(parsedDate) : false);
-  const parsedDate = useMemo(handleDueDate, []);
   const isOverdue = useMemo(handleIsOverdue, []);
   return (
     <Box>

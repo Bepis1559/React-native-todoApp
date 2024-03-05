@@ -1,6 +1,5 @@
 import type { StyleProp, ViewStyle } from "react-native";
 
-const verticalDistance = 11.5;
 export const todoStyle: StyleProp<ViewStyle> = {
   shadowColor: "black",
   //   ios and web
@@ -10,9 +9,8 @@ export const todoStyle: StyleProp<ViewStyle> = {
   elevation: 5,
   flexDirection: "row",
   alignItems: "center",
-  marginBottom: verticalDistance,
-  paddingVertical: verticalDistance,
-  paddingHorizontal: 10,
+  paddingVertical: 15,
+  paddingHorizontal: 9,
   borderRadius: 10,
   backgroundColor: "rgb(34, 34, 34)",
 };

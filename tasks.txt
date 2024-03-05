@@ -1,0 +1,17 @@
+6. Handle add button
+1. Create an OVERDUE layer
+2. Create a LATER layer
+3. Create Completed layer
+4. Create No date layer
+4. Make screen scrollable
+5. Handle expanded todos
+7. Handle db
+
+
+
+
+
+
+* For the updating of todos :  
+1. Make a new state for Completed and use it to update UI
+2. That somehow transition to the section and then rerender

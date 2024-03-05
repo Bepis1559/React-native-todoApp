@@ -1,15 +1,15 @@
-import { VStack } from "@gluestack-ui/themed";
+import { Box, VStack } from "@gluestack-ui/themed";
 import React from "react";
 import { AllToDos } from "../components/AllToDos";
 import { AddBtn } from "../components/AddBtn";
-import { FullPageThemedBox } from "../wrappers/FullPageThemedBox";
+import { AppContainer } from "../wrappers/AppContainer";
 export default function Page() {
   return (
-    <FullPageThemedBox>
-      <VStack marginHorizontal={15} marginVertical={15}>
+    <Box flex={1}>
+      <AppContainer>
         <AllToDos />
-      </VStack>
+      </AppContainer>
       <AddBtn />
-    </FullPageThemedBox>
+    </Box>
   );
 }
