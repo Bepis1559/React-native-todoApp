@@ -1,4 +1,4 @@
-import { Box, VStack } from "@gluestack-ui/themed";
+import { Box } from "@gluestack-ui/themed";
 import React from "react";
 import { AllToDos } from "../components/AllToDos";
 import { AddBtn } from "../components/AddBtn";

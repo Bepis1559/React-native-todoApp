@@ -14,7 +14,7 @@ type props = {
 };
 export function Component(props: props): ReactElement {
   const { value, dueDate, id, isCompleted } = props;
-  const textCrossingAnimationDuration = useRef(250);
+  const textCrossingAnimationDuration = useRef(200);
   const [tempCompleted, handleOnChange] = useHandleCheckBoxOnChange(
     id,
     isCompleted,

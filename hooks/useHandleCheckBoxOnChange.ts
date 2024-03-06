@@ -23,7 +23,12 @@ export function useHandleCheckBoxOnChange(
   function handleOnChange() {
     setTempCompleted((prev) => !prev);
     timeoutId.current = setTimeout(() => {
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+      LayoutAnimation.configureNext({
+        duration: 350,
+        create: { type: "linear", property: "opacity" },
+        update: { type: "linear", property: "opacity" },
+        delete: { type: "linear", property: "opacity" },
+      });
 
       setAllTodos((prev) => {
         return prev.map((todo) => {

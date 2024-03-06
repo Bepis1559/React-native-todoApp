@@ -1,4 +1,4 @@
-import { GluestackUIProvider } from "@gluestack-ui/themed";
+import { GluestackUIProvider, StatusBar } from "@gluestack-ui/themed";
 import { SplashScreen, Stack } from "expo-router";
 import { config } from "../gluestack.config";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -23,6 +23,8 @@ export default function RootLayout() {
   const textColor = getTextColor();
   return (
     <GluestackUIProvider colorMode="dark" config={config}>
+      <StatusBar barStyle="light-content" />
+
       <SafeAreaProvider
         style={{ backgroundColor: bgColor }}
         onLayout={onLayoutRootView}>
