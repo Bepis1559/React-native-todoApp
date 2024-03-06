@@ -1,6 +1,6 @@
 import { Box, Text } from "@gluestack-ui/themed";
 import { type ReactElement } from "react";
-import { isDateOverdue } from "../helpers/todoDateFormat";
+import { isDateOverdue } from "../helpers/isDateOverdue";
 
 type CheckBoxDueDateProps = {
   dueDate?: string;
