@@ -1,4 +1,4 @@
-import { ScrollView, Box } from "@gluestack-ui/themed";
+import { Box } from "@gluestack-ui/themed";
 import type { ReactNode, ReactElement } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getBackgroundColor } from "../styles/colors";

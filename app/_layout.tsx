@@ -2,7 +2,7 @@ import { GluestackUIProvider, StatusBar } from "@gluestack-ui/themed";
 import { SplashScreen, Stack } from "expo-router";
 import { config } from "../gluestack.config";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { useFonts } from "expo-font";
 import { getBackgroundColor, getTextColor } from "../styles/colors";
 

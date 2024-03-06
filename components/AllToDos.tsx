@@ -9,13 +9,13 @@ export function AllToDos(): ReactElement {
 
   return (
     <SectionList
-      marginBottom={0}
       paddingHorizontal={10}
       paddingTop={10}
       sections={sections}
       contentContainerStyle={{ paddingBottom: 60 }}
       ItemSeparatorComponent={() => <View height={15} />}
       keyExtractor={(item) => (item as Todo).id}
+      // initialNumToRender={12}
       renderItem={({ item }) => {
         const { id, value, dueDate, isCompleted } = item as Todo;
         return (
