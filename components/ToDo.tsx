@@ -2,7 +2,7 @@ import { type ReactElement, memo, useRef } from "react";
 import { ActualCheckBox } from "./ActualCheckBox";
 import { CheckBoxTextContent } from "./CheckBoxTextContent";
 import { Box } from "@gluestack-ui/themed";
-import { CheckBoxDueDate } from "./CheckBoxDueDate";
+import { DueDate } from "./DueDate";
 import { ToDoContainer } from "../wrappers/ToDoContainer";
 import { useHandleCheckBoxOnChange } from "../hooks/useHandleCheckBoxOnChange";
 
@@ -34,7 +34,7 @@ export function Component(props: props): ReactElement {
           animationDuration={textCrossingAnimationDuration.current}
           value={value}
         />
-        <CheckBoxDueDate dueDate={dueDate} />
+        <DueDate dueDate={dueDate} />
       </Box>
     </ToDoContainer>
   );

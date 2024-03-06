@@ -1,3 +1,4 @@
+0. Add overdues functionality
 1. Handle expanded todos
 2. Handle add button
 3. Handle db
@@ -8,7 +9,7 @@
 
 -- Expanded todo rows
 
-  1. Navigation / Header - back arrow + tick icon for saving changes
+  1. Navigation / Header - back arrow + tick icon for saving changes (appers after the input is clicked)
 
   2. Views
 

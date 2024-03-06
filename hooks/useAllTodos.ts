@@ -1,7 +1,6 @@
 import { useAtom } from "jotai";
 import { allTodosAtom } from "../context/todosContext";
-import { todoDateFormat } from "../helpers/todoDateFormat";
-import { isPast } from "date-fns";
+import { isDateOverdue } from "../helpers/todoDateFormat";
 
 export function useAllTodos() {
   const [allTodos] = useAtom(allTodosAtom);
@@ -10,14 +9,14 @@ export function useAllTodos() {
       title: "Overdue",
       data: allTodos.filter(
         ({ dueDate, isCompleted }) =>
-          dueDate && isPast(todoDateFormat(dueDate)) && !isCompleted,
+          dueDate && isDateOverdue(dueDate) && !isCompleted,
       ),
     },
     {
       title: "Later",
       data: allTodos.filter(
         ({ isCompleted, dueDate }) =>
-          dueDate && !isPast(todoDateFormat(dueDate)) && !isCompleted,
+          dueDate && !isDateOverdue(dueDate) && !isCompleted,
       ),
     },
 
