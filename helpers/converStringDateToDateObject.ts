@@ -1,6 +1,6 @@
-import { isPast, parse } from "date-fns";
+import { parse } from "date-fns";
 
-export function isDateOverdue(dueDate: string) {
+export function converStringDateToDateObject(dueDate: string) {
   const today = new Date();
   const dateParts = dueDate.split(",");
   if (dateParts.length == 2) {
@@ -20,7 +20,8 @@ export function isDateOverdue(dueDate: string) {
       hours,
       minutes,
     );
-    return isPast(dueDate_asDateObject);
+
+    return dueDate_asDateObject;
   }
 
   const parts = dueDate.split(" ");
@@ -35,7 +36,7 @@ export function isDateOverdue(dueDate: string) {
     hours,
     minutes,
   );
-  return isPast(dueDate_asDateObject);
+  return dueDate_asDateObject;
 }
 
 function getMonthNumber(monthString: string) {
