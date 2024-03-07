@@ -24,7 +24,7 @@ export function useHandleCheckBoxOnChange(
     setTempCompleted((prev) => !prev);
     timeoutId.current = setTimeout(() => {
       LayoutAnimation.configureNext({
-        duration: 350,
+        duration: 250,
         create: { type: "linear", property: "opacity" },
         update: { type: "linear", property: "opacity" },
         delete: { type: "linear", property: "opacity" },

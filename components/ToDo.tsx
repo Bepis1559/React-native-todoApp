@@ -6,22 +6,20 @@ import { DueDate } from "./DueDate";
 import { ToDoContainer } from "../wrappers/ToDoContainer";
 import { useHandleCheckBoxOnChange } from "../hooks/useHandleCheckBoxOnChange";
 
-type props = {
-  id: string;
-  value: string;
-  dueDate?: string;
-  isCompleted: boolean;
-};
-export function Component(props: props): ReactElement {
+export function Component(props: todoComponentProps): ReactElement {
   const { value, dueDate, id, isCompleted } = props;
-  const textCrossingAnimationDuration = useRef(200);
+  const textCrossingAnimationDuration = useRef(100);
   const [tempCompleted, handleOnChange] = useHandleCheckBoxOnChange(
     id,
     isCompleted,
     textCrossingAnimationDuration.current,
   );
   return (
-    <ToDoContainer id={id}>
+    <ToDoContainer
+      value={value}
+      dueDate={dueDate}
+      isCompleted={isCompleted}
+      id={id}>
       <ActualCheckBox
         handleOnChange={handleOnChange}
         completed={tempCompleted}

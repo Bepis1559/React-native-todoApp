@@ -1,7 +1,5 @@
 import { useAtom } from "jotai";
 import { allTodosAtom } from "../context/todosContext";
-import { converStringDateToDateObject } from "../helpers/converStringDateToDateObject";
-import { isPast } from "date-fns";
 import { getTodos } from "../helpers/getTodos";
 import { sortTodosByDate } from "../helpers/sortTodosByDate";
 import {

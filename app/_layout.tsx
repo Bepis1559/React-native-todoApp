@@ -5,6 +5,15 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useCallback } from "react";
 import { useFonts } from "expo-font";
 import { getBackgroundColor, getTextColor } from "../styles/colors";
+import * as Notifications from "expo-notifications";
+
+// Notifications.setNotificationHandler({
+//   handleNotification: async () => ({
+//     shouldShowAlert: true,
+//     shouldPlaySound: false,
+//     shouldSetBadge: false,
+//   }),
+// });
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
@@ -17,8 +26,6 @@ export default function RootLayout() {
 
   if (!fontsLoaded && !fontError) return null;
 
-  // const textColor = useMemo(getTextColor, []);
-  // const bgColor = useMemo(getBackgroundColor, []);
   const bgColor = getBackgroundColor();
   const textColor = getTextColor();
   return (

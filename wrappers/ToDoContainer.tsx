@@ -1,17 +1,32 @@
 import { Motion } from "@legendapp/motion";
 import { router } from "expo-router";
-import { type ReactNode, type ReactElement, memo, useRef } from "react";
+import { type ReactNode, type ReactElement, memo } from "react";
 import { todoStyle } from "../styles/ToDoStyle";
 
-type ToDoContainerProps = {
-  id: string;
+type toDoContainerProps = {
   children: ReactNode;
-};
-function Component({ children, id }: ToDoContainerProps): ReactElement {
+} & todoComponentProps;
+function Component({
+  children,
+  id,
+  dueDate,
+  isCompleted,
+  value,
+}: toDoContainerProps): ReactElement {
   return (
     <Motion.Pressable>
       <Motion.View>
-        <Motion.Pressable onPress={() => router.push(`todos/${id}`)}>
+        <Motion.Pressable
+          onPress={() =>
+            router.push({
+              pathname: `todos/${id}`,
+              params: {
+                dueDate,
+                isCompleted,
+                value,
+              },
+            })
+          }>
           <Motion.View style={todoStyle} whileTap={{ scale: 0.9 }}>
             {children}
           </Motion.View>
