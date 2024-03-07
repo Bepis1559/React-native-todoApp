@@ -10,8 +10,8 @@ export function useAllTodos() {
   const sortTodosByDate = (todos: Todo[]) => {
     return todos.sort(
       (a, b) =>
-        converStringDateToDateObject(b.dueDate!).getTime() -
-        converStringDateToDateObject(a.dueDate!).getTime(),
+        converStringDateToDateObject(a.dueDate!).getTime() -
+        converStringDateToDateObject(b.dueDate!).getTime(),
     );
   };
 
