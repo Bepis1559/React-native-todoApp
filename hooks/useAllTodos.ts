@@ -3,9 +3,15 @@ import { allTodosAtom } from "../context/todosContext";
 import { converStringDateToDateObject } from "../helpers/converStringDateToDateObject";
 import { isPast } from "date-fns";
 import { type Todo } from "../models/Todo";
+import { getTodos } from "../helpers/getTodos";
 
-export function useAllTodos() {
-  const [allTodos] = useAtom(allTodosAtom);
+type returnType = [todosSection[], () => Promise<void>];
+export function useAllTodos(): returnType {
+  const [allTodos, setAllTodos] = useAtom(allTodosAtom);
+
+  async function refreshTodos() {
+    setAllTodos(getTodos());
+  }
 
   const sortTodosByDate = (todos: Todo[]) => {
     return todos.sort(
@@ -50,5 +56,5 @@ export function useAllTodos() {
     },
   ];
 
-  return [sections];
+  return [sections, refreshTodos];
 }

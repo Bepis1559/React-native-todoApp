@@ -6,7 +6,7 @@ const date2 = getToDoReadyFormattedDate(2024, 4, 17, 17, 24);
 const date3 = getToDoReadyFormattedDate(2026, 10, 13, 13, 11);
 const date4 = getToDoReadyFormattedDate(2021, 12, 22, 7, 30);
 const date5 = getToDoReadyFormattedDate(2024, 0, 7, 13, 9);
-const date6 = getToDoReadyFormattedDate(2024, 2, 7, 9, 7);
+const date6 = getToDoReadyFormattedDate(2024, 2, 7, 17, 13);
 
 export function getTodos() {
   const todo1 = new Todo("Buy groceries", date1);
