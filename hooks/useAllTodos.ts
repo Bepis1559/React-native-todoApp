@@ -2,8 +2,14 @@ import { useAtom } from "jotai";
 import { allTodosAtom } from "../context/todosContext";
 import { converStringDateToDateObject } from "../helpers/converStringDateToDateObject";
 import { isPast } from "date-fns";
-import { type Todo } from "../models/Todo";
 import { getTodos } from "../helpers/getTodos";
+import { sortTodosByDate } from "../helpers/sortTodosByDate";
+import {
+  getCompletedTodos,
+  getLaterTodos,
+  getNoDateTodos,
+  getOverdueTodos,
+} from "../helpers/getFilteredTodosForSpecificSection";
 
 type returnType = [todosSection[], () => Promise<void>];
 export function useAllTodos(): returnType {
@@ -13,46 +19,22 @@ export function useAllTodos(): returnType {
     setAllTodos(getTodos());
   }
 
-  const sortTodosByDate = (todos: Todo[]) => {
-    return todos.sort(
-      (a, b) =>
-        converStringDateToDateObject(a.dueDate!).getTime() -
-        converStringDateToDateObject(b.dueDate!).getTime(),
-    );
-  };
-
   const sections: todosSection[] = [
     {
       title: "Overdue",
-      data: sortTodosByDate(
-        allTodos.filter(
-          ({ dueDate, isCompleted }) =>
-            dueDate &&
-            isPast(converStringDateToDateObject(dueDate)) &&
-            !isCompleted,
-        ),
-      ),
+      data: sortTodosByDate(getOverdueTodos(allTodos)),
     },
     {
       title: "Later",
-      data: sortTodosByDate(
-        allTodos.filter(
-          ({ isCompleted, dueDate }) =>
-            dueDate &&
-            !isPast(converStringDateToDateObject(dueDate)) &&
-            !isCompleted,
-        ),
-      ),
+      data: sortTodosByDate(getLaterTodos(allTodos)),
     },
     {
       title: "No date",
-      data: allTodos.filter(
-        ({ dueDate, isCompleted }) => !dueDate && !isCompleted,
-      ),
+      data: getNoDateTodos(allTodos),
     },
     {
       title: "Completed",
-      data: allTodos.filter(({ isCompleted }) => isCompleted),
+      data: getCompletedTodos(allTodos),
     },
   ];
 
