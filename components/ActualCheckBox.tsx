@@ -13,7 +13,7 @@ type ActualCheckBoxProps = {
   handleOnChange(): void;
 };
 
-function Component({
+export function Component({
   value,
   completed,
   handleOnChange,

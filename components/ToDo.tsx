@@ -5,14 +5,17 @@ import { Box } from "@gluestack-ui/themed";
 import { DueDate } from "./DueDate";
 import { ToDoContainer } from "../wrappers/ToDoContainer";
 import { useHandleCheckBoxOnChange } from "../hooks/useHandleCheckBoxOnChange";
+import { configureTodosLayoutAnimation } from "../helpers/configureTodosLayoutAnimation";
 
 export function Component(props: todoComponentProps): ReactElement {
   const { value, dueDate, id, isCompleted } = props;
   const textCrossingAnimationDuration = useRef(100);
+  const animationConfiguration = configureTodosLayoutAnimation;
   const [tempCompleted, handleOnChange] = useHandleCheckBoxOnChange(
     id,
     isCompleted,
     textCrossingAnimationDuration.current,
+    animationConfiguration,
   );
   return (
     <ToDoContainer

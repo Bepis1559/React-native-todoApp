@@ -6,14 +6,15 @@ import { Box, Text } from "@gluestack-ui/themed";
 
 export default function Page(): ReactElement {
   const { id, isCompleted, value, dueDate } =
-    useLocalSearchParams() as unknown as todoComponentProps;
+    useLocalSearchParams() as unknown as expandedTodoProps;
   return (
     <AppContainer>
-      <ExpandedTodo />
-      <Text>{id}</Text>
-      <Text>{isCompleted}</Text>
-      <Text>{value}</Text>
-      <Text>{dueDate}</Text>
+      <ExpandedTodo
+        id={id}
+        isCompleted={isCompleted}
+        value={value}
+        dueDate={dueDate}
+      />
     </AppContainer>
   );
 }

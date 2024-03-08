@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useEffect, useRef, useState } from "react";
-import { LayoutAnimation, Platform, UIManager } from "react-native";
+import { Platform, UIManager } from "react-native";
 import { allTodosAtom } from "../context/todosContext";
 
 type returnType = [tempCompleted: boolean, handleOnChange: () => void];
@@ -14,32 +14,34 @@ export function useHandleCheckBoxOnChange(
   id: string,
   isCompleted: boolean,
   timeout: number,
+  configureTodosLayoutAnimation?: () => void,
 ): returnType {
   const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [, setAllTodos] = useAtom(allTodosAtom);
   const [tempCompleted, setTempCompleted] = useState(isCompleted);
+  function handleTodos() {
+    setAllTodos((prev) => {
+      return prev.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, isCompleted: !isCompleted };
+        } else {
+          return todo;
+        }
+      });
+    });
+  }
 
   function handleOnChange() {
     setTempCompleted((prev) => !prev);
-    timeoutId.current = setTimeout(() => {
-      LayoutAnimation.configureNext({
-        duration: 250,
-        create: { type: "linear", property: "opacity" },
-        update: { type: "linear", property: "opacity" },
-        delete: { type: "linear", property: "opacity" },
-      });
-
-      setAllTodos((prev) => {
-        return prev.map((todo) => {
-          if (todo.id === id) {
-            return { ...todo, isCompleted: !isCompleted };
-          } else {
-            return todo;
-          }
-        });
-      });
-    }, timeout);
+    if (timeout <= 0) {
+      handleTodos();
+    } else {
+      timeoutId.current = setTimeout(() => {
+        configureTodosLayoutAnimation && configureTodosLayoutAnimation();
+        handleTodos();
+      }, timeout);
+    }
   }
 
   useEffect(() => {

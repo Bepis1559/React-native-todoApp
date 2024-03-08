@@ -1,5 +1,5 @@
 export function getBackgroundColor() {
-  return "#171717";
+  return "rgba(23, 23, 23,1 )";
 }
 export function getTextColor() {
   return "#fff";

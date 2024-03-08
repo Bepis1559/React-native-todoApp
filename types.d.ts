@@ -12,6 +12,10 @@ type todoComponentProps = {
   isCompleted: boolean;
 };
 
+type expandedTodoProps = Omit<todoComponentProps, "isCompleted"> & {
+  isCompleted: string;
+};
+
 type todosGroupsNames = "overdue" | "later" | "no date" | "completed";
 
 type todosSection = {
