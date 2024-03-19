@@ -37,7 +37,3 @@ export function Expanded_content(props: props): ReactElement {
     </Box>
   );
 }
-
-{
-  /* <Expanded_content id={id} isCompleted={isCompleted} value={value} /> */
-}

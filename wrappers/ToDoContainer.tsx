@@ -1,7 +1,15 @@
 import { Motion } from "@legendapp/motion";
-import { router } from "expo-router";
-import { type ReactNode, type ReactElement, memo } from "react";
+import { router, useFocusEffect } from "expo-router";
+import {
+  type ReactNode,
+  type ReactElement,
+  memo,
+  useState,
+  useCallback,
+} from "react";
 import { todoStyle } from "../styles/ToDoStyle";
+import { useAtom } from "jotai";
+import { isNavigatingAtom } from "../context/routesContext";
 
 type toDoContainerProps = {
   children: ReactNode;
@@ -13,20 +21,30 @@ function Component({
   isCompleted,
   value,
 }: toDoContainerProps): ReactElement {
+  const [isNavigating, setIsNavigating] = useAtom(isNavigatingAtom);
+  function handlePress() {
+    if (!isNavigating) {
+      setIsNavigating(true);
+      router.push({
+        pathname: `todos/${id}`,
+        params: {
+          dueDate,
+          isCompleted,
+          value,
+        },
+      });
+    }
+    console.log(isNavigating);
+  }
+  useFocusEffect(
+    useCallback(() => {
+      setIsNavigating(false);
+    }, []),
+  );
   return (
     <Motion.Pressable>
       <Motion.View>
-        <Motion.Pressable
-          onPress={() =>
-            router.push({
-              pathname: `todos/${id}`,
-              params: {
-                dueDate,
-                isCompleted,
-                value,
-              },
-            })
-          }>
+        <Motion.Pressable onPress={handlePress}>
           <Motion.View style={todoStyle} whileTap={{ scale: 0.9 }}>
             {children}
           </Motion.View>
