@@ -1,10 +1,26 @@
 import { useRef, type ReactElement } from "react";
-import { Box, Text } from "@gluestack-ui/themed";
+import {
+  BellIcon,
+  Box,
+  Icon,
+  Input,
+  InputField,
+  InputIcon,
+  InputSlot,
+  Text,
+  ThreeDotsIcon,
+} from "@gluestack-ui/themed";
 import { ActualCheckBox } from "./ActualCheckBox";
 import { useHandleCheckBoxOnChange } from "../hooks/useHandleCheckBoxOnChange";
 import { CheckBoxTextContent } from "./CheckBoxTextContent";
+import {
+  ExpandedTodoStyle,
+  ExpanedTodoRemarksStyle,
+} from "../styles/ExpandedTodoStyle";
 import { TextInput } from "react-native";
-import { todoStyle } from "../styles/ToDoStyle";
+import { Expanded_remarks } from "./expandedTodo/Expanded_remarks";
+import { Expanded_date } from "./expandedTodo/Expanded_date";
+import { Expanded_content } from "./expandedTodo/Expanded_content";
 
 export function ExpandedTodo({
   id,
@@ -12,29 +28,12 @@ export function ExpandedTodo({
   isCompleted,
   dueDate,
 }: expandedTodoProps): ReactElement {
-  const textCrossingAnimationDuration = useRef(150);
-  const completed = isCompleted == "false" ? false : true;
-  const [tempCompleted, handleOnChange] = useHandleCheckBoxOnChange(
-    id,
-    completed,
-    textCrossingAnimationDuration.current,
-  );
-
+  const textColor = useRef("#528deb");
   return (
     <>
-      <Box marginHorizontal={10} style={todoStyle}>
-        <ActualCheckBox
-          value={value}
-          id={id}
-          completed={tempCompleted}
-          handleOnChange={handleOnChange}
-        />
-        <CheckBoxTextContent
-          isTodoCompleted={tempCompleted}
-          animationDuration={textCrossingAnimationDuration.current}
-          value={value}
-        />
-      </Box>
+      <Expanded_content id={id} isCompleted={isCompleted} value={value} />
+      <Expanded_date textColor={textColor.current} dueDate={dueDate} />
+      <Expanded_remarks textColor={textColor.current} />
     </>
   );
 }

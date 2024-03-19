@@ -22,3 +22,5 @@
   
   * Delete icon + 'delete' text , for deleting the todo
   
+
+  !!!! Fix multi click bugging
