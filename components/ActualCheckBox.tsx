@@ -15,9 +15,9 @@ type ActualCheckBoxProps = {
 
 export function Component({
   value,
+  id,
   completed,
   handleOnChange,
-  id,
 }: ActualCheckBoxProps): ReactElement {
   return (
     <Checkbox

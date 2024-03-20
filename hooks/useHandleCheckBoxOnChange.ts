@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Platform, UIManager } from "react-native";
-import { allTodosAtom } from "../context/todosContext";
+import { allTodosAtom } from "../context/allTodosContext";
 
 type returnType = [tempCompleted: boolean, handleOnChange: () => void];
 
@@ -17,10 +17,9 @@ export function useHandleCheckBoxOnChange(
   configureTodosLayoutAnimation?: () => void,
 ): returnType {
   const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
-
   const [, setAllTodos] = useAtom(allTodosAtom);
   const [tempCompleted, setTempCompleted] = useState(isCompleted);
-  function handleTodos() {
+  const handleTodos = useCallback(() => {
     setAllTodos((prev) => {
       return prev.map((todo) => {
         if (todo.id === id) {
@@ -30,9 +29,9 @@ export function useHandleCheckBoxOnChange(
         }
       });
     });
-  }
+  }, [id, isCompleted, setAllTodos]);
 
-  function handleOnChange() {
+  const handleOnChange = useCallback(() => {
     setTempCompleted((prev) => !prev);
     if (timeout <= 0) {
       handleTodos();
@@ -42,7 +41,7 @@ export function useHandleCheckBoxOnChange(
         handleTodos();
       }, timeout);
     }
-  }
+  }, [timeout, configureTodosLayoutAnimation, handleTodos]);
 
   useEffect(() => {
     return () => {

@@ -1,12 +1,6 @@
 import { Motion } from "@legendapp/motion";
 import { router, useFocusEffect } from "expo-router";
-import {
-  type ReactNode,
-  type ReactElement,
-  memo,
-  useState,
-  useCallback,
-} from "react";
+import { type ReactNode, type ReactElement, memo, useCallback } from "react";
 import { todoStyle } from "../styles/ToDoStyle";
 import { useAtom } from "jotai";
 import { isNavigatingAtom } from "../context/routesContext";
@@ -34,7 +28,6 @@ function Component({
         },
       });
     }
-    console.log(isNavigating);
   }
   useFocusEffect(
     useCallback(() => {
@@ -45,7 +38,7 @@ function Component({
     <Motion.Pressable>
       <Motion.View>
         <Motion.Pressable onPress={handlePress}>
-          <Motion.View style={todoStyle} whileTap={{ scale: 0.9 }}>
+          <Motion.View style={todoStyle} whileTap={{ scale: 0.95 }}>
             {children}
           </Motion.View>
         </Motion.Pressable>

@@ -1,17 +1,13 @@
 import { RefreshControl, SectionList, Text, View } from "@gluestack-ui/themed";
-import { useState, type ReactElement, useCallback } from "react";
+import { type ReactElement } from "react";
 import { ToDo } from "./ToDo";
 import { Todo } from "../models/Todo";
 import { useAllTodos } from "../hooks/useAllTodos";
+import { useRefresh } from "../hooks/useRefresh";
 
 export function AllToDos(): ReactElement {
-  const [sections, refreshTodos] = useAllTodos();
-  const [refreshing, setRefreshing] = useState(false);
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    refreshTodos().then(() => setRefreshing(false));
-  }, [refreshTodos]);
+  const [sections] = useAllTodos();
+  const [refreshing, onRefresh] = useRefresh();
 
   return (
     <SectionList
@@ -24,7 +20,6 @@ export function AllToDos(): ReactElement {
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
-      // initialNumToRender={12}
       renderItem={({ item }) => {
         const { id, value, dueDate, isCompleted } = item as Todo;
         return (

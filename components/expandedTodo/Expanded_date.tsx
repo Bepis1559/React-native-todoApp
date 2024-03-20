@@ -8,12 +8,15 @@ type props = {
 };
 export function Expanded_date({ textColor, dueDate }: props): ReactElement {
   const dueDateAsArray = dueDate?.split(",");
-
   return (
     <Box style={ExpandedTodoStyle} accessibilityLabel="Date">
       <Icon height={25} width={25} marginRight={5} as={BellIcon} />
       <Text color={textColor}>
-        {dueDateAsArray ? dueDateAsArray[2] : "Add reminder"}
+        {dueDateAsArray
+          ? dueDateAsArray?.length == 2
+            ? dueDateAsArray[1]
+            : dueDateAsArray[2]
+          : "Add reminder"}
       </Text>
     </Box>
   );

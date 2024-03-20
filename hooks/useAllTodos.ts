@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { allTodosAtom } from "../context/todosContext";
+import { allTodosAtom } from "../context/allTodosContext";
 import { getTodos } from "../helpers/getTodos";
 import { sortTodosByDate } from "../helpers/sortTodosByDate";
 import {
@@ -8,14 +8,15 @@ import {
   getNoDateTodos,
   getOverdueTodos,
 } from "../helpers/getFilteredTodosForSpecificSection";
+import { useCallback } from "react";
 
 type returnType = [todosSection[], () => Promise<void>];
 export function useAllTodos(): returnType {
   const [allTodos, setAllTodos] = useAtom(allTodosAtom);
 
-  async function refreshTodos() {
+  const refreshTodos = useCallback(async () => {
     setAllTodos(getTodos());
-  }
+  }, [setAllTodos]);
 
   const sections: todosSection[] = [
     {

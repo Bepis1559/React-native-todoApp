@@ -9,14 +9,16 @@ import { configureTodosLayoutAnimation } from "../helpers/configureTodosLayoutAn
 
 export function Component(props: todoComponentProps): ReactElement {
   const { value, dueDate, id, isCompleted } = props;
-  const textCrossingAnimationDuration = useRef(100);
-  const animationConfiguration = configureTodosLayoutAnimation;
+  const textCrossingAnimationDuration = useRef(150);
+  const animationConfiguration = () =>
+    configureTodosLayoutAnimation(textCrossingAnimationDuration.current);
   const [tempCompleted, handleOnChange] = useHandleCheckBoxOnChange(
     id,
     isCompleted,
     textCrossingAnimationDuration.current,
     animationConfiguration,
   );
+
   return (
     <ToDoContainer
       value={value}
