@@ -1,12 +1,12 @@
 import { Motion } from "@legendapp/motion";
-import { type ReactElement } from "react";
+import { memo, type ReactElement } from "react";
 
 type AnimatedTextCross = {
   isTodoCompleted: boolean;
   animationDuration: number;
 };
 
-export function AnimatedTextCross({
+function Component({
   isTodoCompleted,
   animationDuration,
 }: AnimatedTextCross): ReactElement {
@@ -29,3 +29,5 @@ export function AnimatedTextCross({
       }}></Motion.View>
   );
 }
+
+export const AnimatedTextCross = memo(Component);

@@ -8,7 +8,7 @@ import {
   getNoDateTodos,
   getOverdueTodos,
 } from "../helpers/getFilteredTodosForSpecificSection";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 type returnType = [todosSection[], () => Promise<void>];
 export function useAllTodos(): returnType {
@@ -18,24 +18,27 @@ export function useAllTodos(): returnType {
     setAllTodos(getTodos());
   }, [setAllTodos]);
 
-  const sections: todosSection[] = [
-    {
-      title: "Overdue",
-      data: sortTodosByDate(getOverdueTodos(allTodos)),
-    },
-    {
-      title: "Later",
-      data: sortTodosByDate(getLaterTodos(allTodos)),
-    },
-    {
-      title: "No date",
-      data: getNoDateTodos(allTodos),
-    },
-    {
-      title: "Completed",
-      data: getCompletedTodos(allTodos),
-    },
-  ];
+  const sections: todosSection[] = useMemo(
+    () => [
+      {
+        title: "Overdue",
+        data: sortTodosByDate(getOverdueTodos(allTodos)),
+      },
+      {
+        title: "Later",
+        data: sortTodosByDate(getLaterTodos(allTodos)),
+      },
+      {
+        title: "No date",
+        data: getNoDateTodos(allTodos),
+      },
+      {
+        title: "Completed",
+        data: getCompletedTodos(allTodos),
+      },
+    ],
+    [allTodos],
+  ); // Recompute sections only when allTodos changes
 
   return [sections, refreshTodos];
 }

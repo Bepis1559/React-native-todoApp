@@ -1,12 +1,12 @@
 import { Box, Text } from "@gluestack-ui/themed";
-import { type ReactElement } from "react";
+import { type ReactElement, memo } from "react";
 import { converStringDateToDateObject } from "../helpers/converStringDateToDateObject";
 import { isPast } from "date-fns";
 
 type CheckBoxDueDateProps = {
   dueDate?: string;
 };
-export function DueDate({ dueDate }: CheckBoxDueDateProps): ReactElement {
+function Component({ dueDate }: CheckBoxDueDateProps): ReactElement {
   return (
     <Box>
       <Text
@@ -23,3 +23,4 @@ export function DueDate({ dueDate }: CheckBoxDueDateProps): ReactElement {
     </Box>
   );
 }
+export const DueDate = memo(Component);

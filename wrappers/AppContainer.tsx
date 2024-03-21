@@ -1,12 +1,12 @@
 import { Box } from "@gluestack-ui/themed";
-import type { ReactNode, ReactElement } from "react";
+import { type ReactNode, type ReactElement, memo } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getBackgroundColor } from "../styles/colors";
 
 type ScrollContainerProps = {
   children: ReactNode;
 };
-export function AppContainer({ children }: ScrollContainerProps): ReactElement {
+function Component({ children }: ScrollContainerProps): ReactElement {
   const { top } = useSafeAreaInsets();
   const bgColor = getBackgroundColor();
   return (
@@ -15,3 +15,5 @@ export function AppContainer({ children }: ScrollContainerProps): ReactElement {
     </Box>
   );
 }
+
+export const AppContainer = memo(Component);

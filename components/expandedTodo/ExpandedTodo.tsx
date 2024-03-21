@@ -1,8 +1,8 @@
 import { useRef, type ReactElement } from "react";
 
-import { Expanded_remarks } from "./expandedTodo/Expanded_remarks";
-import { Expanded_date } from "./expandedTodo/Expanded_date";
-import { Expanded_content } from "./expandedTodo/Expanded_content";
+import { Expanded_remarks } from "./Expanded_remarks";
+import { Expanded_date } from "./Expanded_date";
+import { Expanded_content } from "./Expanded_content";
 
 export function ExpandedTodo({
   id,

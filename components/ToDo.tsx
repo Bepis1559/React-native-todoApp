@@ -1,4 +1,4 @@
-import { type ReactElement, memo, useRef } from "react";
+import { type ReactElement, memo, useRef, useCallback } from "react";
 import { ActualCheckBox } from "./ActualCheckBox";
 import { CheckBoxTextContent } from "./CheckBoxTextContent";
 import { Box } from "@gluestack-ui/themed";
@@ -7,18 +7,19 @@ import { ToDoContainer } from "../wrappers/ToDoContainer";
 import { useHandleCheckBoxOnChange } from "../hooks/useHandleCheckBoxOnChange";
 import { configureTodosLayoutAnimation } from "../helpers/configureTodosLayoutAnimation";
 
-export function Component(props: todoComponentProps): ReactElement {
+function Component(props: todoComponentProps): ReactElement {
   const { value, dueDate, id, isCompleted } = props;
   const textCrossingAnimationDuration = useRef(150);
-  const animationConfiguration = () =>
-    configureTodosLayoutAnimation(textCrossingAnimationDuration.current);
+  const animationConfiguration = useCallback(
+    () => configureTodosLayoutAnimation(textCrossingAnimationDuration.current),
+    [],
+  );
   const [tempCompleted, handleOnChange] = useHandleCheckBoxOnChange(
     id,
     isCompleted,
     textCrossingAnimationDuration.current,
     animationConfiguration,
   );
-
   return (
     <ToDoContainer
       value={value}
@@ -42,4 +43,7 @@ export function Component(props: todoComponentProps): ReactElement {
     </ToDoContainer>
   );
 }
-export const ToDo = memo(Component);
+export const ToDo = memo(
+  Component,
+  (prevProps, nextProps) => prevProps.isCompleted === nextProps.isCompleted,
+);
