@@ -31,9 +31,9 @@ export function getTodos() {
   const todo20 = new Todo("Last one");
 
   const allTodos = [
-    // todo1,
-    // todo2,
-    // todo3,
+    todo1,
+    todo2,
+    todo3,
     todo4,
     todo5,
     todo6,
@@ -42,14 +42,14 @@ export function getTodos() {
     todo9,
     todo10,
     todo11,
-    // todo12,
-    // todo13,
-    // todo14,
+    todo12,
+    todo13,
+    todo14,
     todo15,
-    // todo16,
-    // todo17,
-    // todo18,
-    // todo19,
+    todo16,
+    todo17,
+    todo18,
+    todo19,
     todo20,
   ];
 

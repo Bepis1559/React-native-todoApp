@@ -9,7 +9,7 @@ import { configureTodosLayoutAnimation } from "../helpers/configureTodosLayoutAn
 
 function Component(props: todoComponentProps): ReactElement {
   const { value, dueDate, id, isCompleted } = props;
-  const textCrossingAnimationDuration = useRef(150);
+  const textCrossingAnimationDuration = useRef(100);
   const animationConfiguration = useCallback(
     () => configureTodosLayoutAnimation(textCrossingAnimationDuration.current),
     [],
