@@ -16,7 +16,7 @@ function Component({
   value,
 }: toDoContainerProps): ReactElement {
   const [isNavigating, setIsNavigating] = useAtom(isNavigatingAtom);
-  function handlePress() {
+  const handlePressMemoized = useCallback(() => {
     if (!isNavigating) {
       setIsNavigating(true);
       router.push({
@@ -28,20 +28,16 @@ function Component({
         },
       });
     }
-  }
+  }, [isCompleted]);
   useFocusEffect(
     useCallback(() => {
       setIsNavigating(false);
     }, []),
   );
   return (
-    <Motion.Pressable>
-      <Motion.View>
-        <Motion.Pressable onPress={handlePress}>
-          <Motion.View style={todoStyle} whileTap={{ scale: 0.95 }}>
-            {children}
-          </Motion.View>
-        </Motion.Pressable>
+    <Motion.Pressable onPress={handlePressMemoized}>
+      <Motion.View style={todoStyle} whileTap={{ scale: 0.95 }}>
+        {children}
       </Motion.View>
     </Motion.Pressable>
   );
