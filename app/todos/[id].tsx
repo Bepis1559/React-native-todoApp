@@ -2,7 +2,6 @@ import { ReactElement } from "react";
 import { AppContainer } from "../../wrappers/AppContainer";
 import { ExpandedTodo } from "../../components/expandedTodo/ExpandedTodo";
 import { useLocalSearchParams } from "expo-router";
-import { Box, Text } from "@gluestack-ui/themed";
 
 export default function Page(): ReactElement {
   const { id, isCompleted, value, dueDate } =

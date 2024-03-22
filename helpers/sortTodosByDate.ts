@@ -1,7 +1,7 @@
-import { type Todo } from "../models/Todo";
+import { type TodoModel } from "../models/TodoModel";
 import { converStringDateToDateObject } from "./converStringDateToDateObject";
 
-export function sortTodosByDate(todos: Todo[]) {
+export function sortTodosByDate(todos: TodoModel[]) {
   return todos.sort(
     (a, b) =>
       converStringDateToDateObject(a.dueDate!).getTime() -
