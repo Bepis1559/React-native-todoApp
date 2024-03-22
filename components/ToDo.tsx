@@ -1,6 +1,6 @@
 import { type ReactElement, memo, useRef, useCallback } from "react";
-import { ActualCheckBox } from "./ActualCheckBox";
-import { CheckBoxTextContent } from "./CheckBoxTextContent";
+import { CheckBox } from "./CheckBox";
+import { TodoContent } from "./TodoContent";
 import { Box } from "@gluestack-ui/themed";
 import { DueDate } from "./DueDate";
 import { ToDoContainer } from "../wrappers/ToDoContainer";
@@ -26,14 +26,14 @@ function Component(props: todoComponentProps): ReactElement {
       dueDate={dueDate}
       isCompleted={isCompleted}
       id={id}>
-      <ActualCheckBox
+      <CheckBox
         handleOnChange={handleOnChange}
         completed={tempCompleted}
         value={value}
         id={id}
       />
       <Box marginLeft={5}>
-        <CheckBoxTextContent
+        <TodoContent
           isTodoCompleted={tempCompleted}
           animationDuration={textCrossingAnimationDuration.current}
           value={value}

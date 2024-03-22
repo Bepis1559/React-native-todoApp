@@ -2,7 +2,7 @@ import { Box, Text } from "@gluestack-ui/themed";
 import { AnimatedTextCross } from "./AnimatedTextCross";
 import { memo, type ReactElement } from "react";
 
-function Component(props: CheckBoxTextContentProps): ReactElement {
+function Component(props: TodoContentProps): ReactElement {
   const { isTodoCompleted, animationDuration, value } = props;
   return (
     <Box alignSelf="flex-start">
@@ -16,4 +16,4 @@ function Component(props: CheckBoxTextContentProps): ReactElement {
     </Box>
   );
 }
-export const CheckBoxTextContent = memo(Component);
+export const TodoContent = memo(Component);

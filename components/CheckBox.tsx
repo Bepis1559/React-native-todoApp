@@ -6,7 +6,7 @@ import {
 } from "@gluestack-ui/themed";
 import { type ReactElement, memo } from "react";
 
-function Component(props: ActualCheckBoxProps): ReactElement {
+function Component(props: CheckBoxProps): ReactElement {
   const { value, id, completed, handleOnChange } = props;
   return (
     <Checkbox
@@ -27,4 +27,4 @@ function Component(props: ActualCheckBoxProps): ReactElement {
   );
 }
 
-export const ActualCheckBox = memo(Component);
+export const CheckBox = memo(Component);

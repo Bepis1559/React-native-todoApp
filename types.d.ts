@@ -21,7 +21,7 @@ type todoComponentProps = {
   isCompleted: boolean;
 };
 
-type ActualCheckBoxProps = {
+type CheckBoxProps = {
   value: string;
   id: string;
   completed: boolean;
@@ -36,7 +36,7 @@ type CheckBoxDueDateProps = {
   dueDate?: string;
 };
 
-type CheckBoxTextContentProps = {
+type TodoContentProps = {
   isTodoCompleted: boolean;
   animationDuration: number;
   value: string;

@@ -1,9 +1,9 @@
 import { Box } from "@gluestack-ui/themed";
 import { useRef, type ReactElement } from "react";
-import { ActualCheckBox } from "../ActualCheckBox";
+import { CheckBox } from "../CheckBox";
 import { ExpandedTodoStyle } from "../../styles/ExpandedTodoStyle";
 import { useHandleCheckBoxOnChange } from "../../hooks/useHandleCheckBoxOnChange";
-import { CheckBoxTextContent } from "../CheckBoxTextContent";
+import { TodoContent } from "../TodoContent";
 
 export function Expanded_content(props: Expanded_contentProps): ReactElement {
   const { id, isCompleted, value } = props;
@@ -16,14 +16,14 @@ export function Expanded_content(props: Expanded_contentProps): ReactElement {
   );
   return (
     <Box accessibilityLabel="CheckBoxAndText" style={ExpandedTodoStyle}>
-      <ActualCheckBox
+      <CheckBox
         value={value}
         id={id}
         completed={tempCompleted}
         handleOnChange={handleOnChange}
       />
       <Box marginLeft={5}>
-        <CheckBoxTextContent
+        <TodoContent
           isTodoCompleted={tempCompleted}
           animationDuration={textCrossingAnimationDuration.current}
           value={value}
