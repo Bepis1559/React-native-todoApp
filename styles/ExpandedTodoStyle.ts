@@ -5,7 +5,7 @@ const baseStyle: StyleProp<ViewStyle> = {
   elevation: 5,
   flexDirection: "row",
   alignItems: "center",
-  marginHorizontal: 10,
+  marginHorizontal: 12,
   marginVertical: 10,
   borderRadius: 10,
   backgroundColor: "rgb(34, 34, 34)",
@@ -14,11 +14,11 @@ const baseStyle: StyleProp<ViewStyle> = {
 export const ExpandedTodoStyle: StyleProp<ViewStyle> = {
   ...baseStyle,
   paddingVertical: 20,
-  paddingHorizontal: 5,
+  paddingHorizontal: 15,
 };
 
 export const ExpanedTodoRemarksStyle: StyleProp<ViewStyle> = {
   ...baseStyle,
   paddingVertical: 10,
-  paddingLeft: 10,
+  paddingLeft: 15,
 };

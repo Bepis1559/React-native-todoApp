@@ -1,15 +1,10 @@
 import { useRef, type ReactElement } from "react";
-
 import { Expanded_remarks } from "./Expanded_remarks";
 import { Expanded_date } from "./Expanded_date";
 import { Expanded_content } from "./Expanded_content";
 
-export function ExpandedTodo({
-  id,
-  value,
-  isCompleted,
-  dueDate,
-}: expandedTodoProps): ReactElement {
+export function ExpandedTodo(props: expandedTodoProps): ReactElement {
+  const { id, value, isCompleted, dueDate } = props;
   const textColor = useRef("#528deb");
   return (
     <>

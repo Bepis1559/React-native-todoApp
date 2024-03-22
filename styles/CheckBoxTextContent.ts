@@ -7,3 +7,13 @@ export const TextCrossBoxStyle: StyleProp<ViewStyle> = {
   right: 10,
   bottom: 0,
 };
+
+export const TextCrossStyle: StyleProp<ViewStyle> = {
+  width: "100%",
+  height: 1,
+  position: "absolute",
+  backgroundColor: "white",
+  left: 0,
+  top: "50%",
+  transformOrigin: "left",
+};

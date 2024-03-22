@@ -1,32 +1,24 @@
+import { Box } from "@gluestack-ui/themed";
 import { Motion } from "@legendapp/motion";
 import { memo, type ReactElement } from "react";
+import {
+  TextCrossBoxStyle,
+  TextCrossStyle,
+} from "../styles/CheckBoxTextContent";
 
-type AnimatedTextCross = {
-  isTodoCompleted: boolean;
-  animationDuration: number;
-};
-
-function Component({
-  isTodoCompleted,
-  animationDuration,
-}: AnimatedTextCross): ReactElement {
+function Component(props: AnimatedTextCrossProps): ReactElement {
+  const { isTodoCompleted, animationDuration } = props;
   return (
-    <Motion.View
-      animate={{ scaleX: isTodoCompleted ? 1 : 0 }}
-      transition={{
-        type: "timing",
-        duration: animationDuration,
-        easing: "linear",
-      }}
-      style={{
-        width: "100%",
-        height: 1,
-        position: "absolute",
-        backgroundColor: "white",
-        left: 0,
-        top: "50%",
-        transformOrigin: "left",
-      }}></Motion.View>
+    <Box style={TextCrossBoxStyle}>
+      <Motion.View
+        animate={{ scaleX: isTodoCompleted ? 1 : 0 }}
+        transition={{
+          type: "timing",
+          duration: animationDuration,
+          easing: "linear",
+        }}
+        style={TextCrossStyle}></Motion.View>
+    </Box>
   );
 }
 

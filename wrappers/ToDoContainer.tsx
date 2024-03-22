@@ -1,21 +1,13 @@
 import { Motion } from "@legendapp/motion";
 import { router, useFocusEffect } from "expo-router";
-import { type ReactNode, type ReactElement, memo, useCallback } from "react";
+import { type ReactElement, memo, useCallback } from "react";
 import { todoStyle } from "../styles/ToDoStyle";
 import { useAtom } from "jotai";
 import { isNavigatingAtom } from "../context/routesContext";
 
-type toDoContainerProps = {
-  children: ReactNode;
-} & todoComponentProps;
-function Component({
-  children,
-  id,
-  dueDate,
-  isCompleted,
-  value,
-}: toDoContainerProps): ReactElement {
+function Component(props: toDoContainerProps): ReactElement {
   const [isNavigating, setIsNavigating] = useAtom(isNavigatingAtom);
+  const { children, id, dueDate, isCompleted, value } = props;
   const handlePressMemoized = useCallback(() => {
     if (!isNavigating) {
       setIsNavigating(true);

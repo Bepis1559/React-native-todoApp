@@ -3,9 +3,6 @@ import { type ReactElement, memo } from "react";
 import { converStringDateToDateObject } from "../helpers/converStringDateToDateObject";
 import { isPast } from "date-fns";
 
-type CheckBoxDueDateProps = {
-  dueDate?: string;
-};
 function Component({ dueDate }: CheckBoxDueDateProps): ReactElement {
   return (
     <Box>

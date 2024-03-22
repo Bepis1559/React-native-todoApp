@@ -43,7 +43,4 @@ function Component(props: todoComponentProps): ReactElement {
     </ToDoContainer>
   );
 }
-export const ToDo = memo(
-  Component,
-  (prevProps, nextProps) => prevProps.isCompleted === nextProps.isCompleted,
-);
+export const ToDo = memo(Component);

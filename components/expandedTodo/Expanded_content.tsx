@@ -5,12 +5,7 @@ import { ExpandedTodoStyle } from "../../styles/ExpandedTodoStyle";
 import { useHandleCheckBoxOnChange } from "../../hooks/useHandleCheckBoxOnChange";
 import { CheckBoxTextContent } from "../CheckBoxTextContent";
 
-type props = {
-  id: string;
-  isCompleted: string;
-  value: string;
-};
-export function Expanded_content(props: props): ReactElement {
+export function Expanded_content(props: Expanded_contentProps): ReactElement {
   const { id, isCompleted, value } = props;
   const textCrossingAnimationDuration = useRef(150);
   const completed = isCompleted == "false" ? false : true;

@@ -2,11 +2,8 @@ import { type ReactElement } from "react";
 import { ExpandedTodoStyle } from "../../styles/ExpandedTodoStyle";
 import { BellIcon, Box, Icon, Text } from "@gluestack-ui/themed";
 
-type props = {
-  textColor: string;
-  dueDate: string | undefined;
-};
-export function Expanded_date({ textColor, dueDate }: props): ReactElement {
+export function Expanded_date(props: Expanded_dateProps): ReactElement {
+  const { textColor, dueDate } = props;
   const dueDateAsArray = dueDate?.split(",");
   return (
     <Box style={ExpandedTodoStyle} accessibilityLabel="Date">
