@@ -46,6 +46,10 @@ type AnimatedTextCrossProps = {
   isTodoCompleted: boolean;
   animationDuration: number;
 };
+
+type todoTextProps = {
+  value: string;
+};
 // expanded todo
 type expandedTodoProps = Omit<todoComponentProps, "isCompleted"> & {
   isCompleted: string;
