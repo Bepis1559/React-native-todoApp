@@ -20,7 +20,7 @@ function Component(props: toDoContainerProps): ReactElement {
         },
       });
     }
-  }, [isCompleted]);
+  }, [isNavigating]);
   useFocusEffect(
     useCallback(() => {
       setIsNavigating(false);
