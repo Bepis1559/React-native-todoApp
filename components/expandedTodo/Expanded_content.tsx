@@ -3,15 +3,14 @@ import { useRef, type ReactElement } from "react";
 import { CheckBox } from "../CheckBox";
 import { ExpandedTodoStyle } from "../../styles/ExpandedTodoStyle";
 import { useHandleCheckBoxOnChange } from "../../hooks/useHandleCheckBoxOnChange";
-import { TodoContent } from "../TodoContent";
+import { Expanded_TextContent } from "./Expanded_TextContent";
 
 export function Expanded_content(props: Expanded_contentProps): ReactElement {
-  const { id, isCompleted, value } = props;
+  const { id, isCompleted, value, textColor } = props;
   const textCrossingAnimationDuration = useRef(150);
-  const completed = isCompleted == "false" ? false : true;
   const [tempCompleted, handleOnChange] = useHandleCheckBoxOnChange(
     id,
-    completed,
+    isCompleted == "false" ? false : true,
     textCrossingAnimationDuration.current,
   );
   return (
@@ -22,13 +21,12 @@ export function Expanded_content(props: Expanded_contentProps): ReactElement {
         completed={tempCompleted}
         handleOnChange={handleOnChange}
       />
-      <Box marginLeft={5}>
-        <TodoContent
-          isTodoCompleted={tempCompleted}
-          animationDuration={textCrossingAnimationDuration.current}
-          value={value}
-        />
-      </Box>
+      <Expanded_TextContent
+        tempCompleted={tempCompleted}
+        animationDuration={textCrossingAnimationDuration.current}
+        textColor={textColor}
+        initialInputValue={value}
+      />
     </Box>
   );
 }

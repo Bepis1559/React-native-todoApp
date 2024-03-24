@@ -63,4 +63,12 @@ type Expanded_contentProps = {
   id: string;
   isCompleted: string;
   value: string;
+  textColor: string;
+};
+
+type Expandend_TextContentProps = {
+  tempCompleted: boolean;
+  animationDuration: number;
+  initialInputValue: string;
+  textColor: string;
 };

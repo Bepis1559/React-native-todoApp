@@ -1,4 +1,4 @@
-import type { StyleProp, ViewStyle } from "react-native";
+import type { StyleProp, TextStyle, ViewStyle } from "react-native";
 
 const baseStyle: StyleProp<ViewStyle> = {
   shadowColor: "black",
@@ -13,7 +13,7 @@ const baseStyle: StyleProp<ViewStyle> = {
 
 export const ExpandedTodoStyle: StyleProp<ViewStyle> = {
   ...baseStyle,
-  paddingVertical: 20,
+  paddingVertical: 10,
   paddingHorizontal: 15,
 };
 
@@ -22,3 +22,19 @@ export const ExpanedTodoRemarksStyle: StyleProp<ViewStyle> = {
   paddingVertical: 10,
   paddingLeft: 15,
 };
+
+export function getExpandedTodo_contentInputStyle(tempCompleted: boolean) {
+  const ExpandedTodo_contentInputStyle: StyleProp<TextStyle> = {
+    flex: 1,
+    borderWidth: 0,
+    textDecorationLine: tempCompleted ? "line-through" : "none",
+    textDecorationStyle: "solid",
+    textDecorationColor: "white",
+    marginHorizontal: 0,
+    color: "white",
+    paddingVertical: 6,
+    fontSize: 16,
+    fontFamily: "Inter-Bold",
+  };
+  return ExpandedTodo_contentInputStyle;
+}

@@ -8,7 +8,12 @@ export function ExpandedTodo(props: expandedTodoProps): ReactElement {
   const textColor = useRef("#528deb");
   return (
     <>
-      <Expanded_content id={id} isCompleted={isCompleted} value={value} />
+      <Expanded_content
+        id={id}
+        isCompleted={isCompleted}
+        value={value}
+        textColor={textColor.current}
+      />
       <Expanded_date textColor={textColor.current} dueDate={dueDate} />
       <Expanded_remarks textColor={textColor.current} />
     </>
