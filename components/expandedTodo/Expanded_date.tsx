@@ -1,8 +1,8 @@
-import { type ReactElement } from "react";
+import { memo, type ReactElement } from "react";
 import { ExpanedTodoDateStyle } from "../../styles/ExpandedTodoStyle";
 import { BellIcon, Box, Icon, Text } from "@gluestack-ui/themed";
 
-export function Expanded_date(props: Expanded_dateProps): ReactElement {
+function Component(props: Expanded_dateProps): ReactElement {
   const { textColor, dueDate } = props;
   const dueDateAsArray = dueDate?.split(",");
   return (
@@ -18,3 +18,5 @@ export function Expanded_date(props: Expanded_dateProps): ReactElement {
     </Box>
   );
 }
+
+export const Expanded_date = memo(Component);

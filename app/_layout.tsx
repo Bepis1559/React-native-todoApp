@@ -19,7 +19,6 @@ export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
     "Inter-Bold": require("../assets/fonts/Inter-Bold.ttf"),
   });
-
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontError) await SplashScreen.hideAsync();
   }, [fontsLoaded, fontError]);

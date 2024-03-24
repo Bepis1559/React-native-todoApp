@@ -1,23 +1,27 @@
 import { Box, Text } from "@gluestack-ui/themed";
-import { type ReactElement, useRef, useState } from "react";
+import { type ReactElement, useRef, useState, memo } from "react";
 import { TextInput, TouchableOpacity } from "react-native";
 import {
   ExpandedTodoTextBoxStyle,
   getExpandedTodoTextStyle,
   getExpandedTodo_contentInputStyle,
 } from "../../styles/ExpandedTodoStyle";
-import { useAtom } from "jotai";
-import { isEditingAtom } from "../../context/expandedTodoContext";
+import { useAtom, useSetAtom } from "jotai";
+import {
+  isEditingAtom,
+  isTextContentInteractedWithAtom,
+} from "../../context/expandedTodoContext";
 
-export function Expanded_TextContent(
-  props: Expandend_TextContentProps,
-): ReactElement {
+function Component(props: Expandend_TextContentProps): ReactElement {
   const { tempCompleted, textColor, initialInputValue } = props;
+  const inputRef = useRef<TextInput>(null);
   const [inputState, setInputState] = useState(initialInputValue);
   const [isEditing, setIsEditing] = useAtom(isEditingAtom);
-  const inputRef = useRef<TextInput>(null);
+  const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
+  const handleInteraction = () => setIsInteracting(true);
 
   function handlOnPress() {
+    handleInteraction();
     setIsEditing(true);
     setTimeout(() => {
       inputRef.current?.focus();
@@ -32,7 +36,7 @@ export function Expanded_TextContent(
           multiline
           selectionColor={textColor}
           value={inputState}
-          onBlur={() => setIsEditing(false)}
+          onFocus={handleInteraction}
           onChangeText={(newText) => setInputState(newText)}
         />
       ) : (
@@ -47,3 +51,5 @@ export function Expanded_TextContent(
     </>
   );
 }
+
+export const Expanded_TextContent = memo(Component);

@@ -7,14 +7,18 @@ import {
   InputSlot,
   ThreeDotsIcon,
 } from "@gluestack-ui/themed";
-import { type ReactElement } from "react";
+import { memo, type ReactElement } from "react";
 import { ExpanedTodoRemarksStyle } from "../../styles/ExpandedTodoStyle";
+import { useSetAtom } from "jotai";
+import { isTextContentInteractedWithAtom } from "../../context/expandedTodoContext";
 
 type props = {
   textColor: string;
 };
 
-export function Expanded_remarks({ textColor }: props): ReactElement {
+function Component({ textColor }: props): ReactElement {
+  const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
+
   return (
     <Box style={ExpanedTodoRemarksStyle}>
       <Input borderWidth={0} flex={1}>
@@ -24,6 +28,7 @@ export function Expanded_remarks({ textColor }: props): ReactElement {
           </InputIcon>
         </InputSlot>
         <InputField
+          onFocus={() => setIsInteracting(true)}
           selectionColor={textColor}
           placeholder="Remarks"
           multiline
@@ -32,3 +37,5 @@ export function Expanded_remarks({ textColor }: props): ReactElement {
     </Box>
   );
 }
+
+export const Expanded_remarks = memo(Component);

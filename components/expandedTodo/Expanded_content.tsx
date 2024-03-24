@@ -1,11 +1,11 @@
 import { Box } from "@gluestack-ui/themed";
-import { type ReactElement } from "react";
+import { memo, type ReactElement } from "react";
 import { CheckBox } from "../CheckBox";
 import { ExpandedTodoStyle } from "../../styles/ExpandedTodoStyle";
 import { useHandleCheckBoxOnChange } from "../../hooks/useHandleCheckBoxOnChange";
 import { Expanded_TextContent } from "./Expanded_TextContent";
 
-export function Expanded_content(props: Expanded_contentProps): ReactElement {
+function Component(props: Expanded_contentProps): ReactElement {
   const { id, isCompleted, value, textColor } = props;
   const [tempCompleted, handleOnChange] = useHandleCheckBoxOnChange(
     id,
@@ -27,3 +27,5 @@ export function Expanded_content(props: Expanded_contentProps): ReactElement {
     </Box>
   );
 }
+
+export const Expanded_content = memo(Component);
