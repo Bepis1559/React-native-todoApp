@@ -23,6 +23,12 @@ export const ExpanedTodoRemarksStyle: StyleProp<ViewStyle> = {
   paddingLeft: 15,
 };
 
+export const ExpanedTodoDateStyle: StyleProp<ViewStyle> = {
+  ...baseStyle,
+  paddingVertical: 17,
+  paddingLeft: 15,
+};
+
 export function getExpandedTodo_contentInputStyle(tempCompleted: boolean) {
   const ExpandedTodo_contentInputStyle: StyleProp<TextStyle> = {
     flex: 1,
@@ -30,8 +36,8 @@ export function getExpandedTodo_contentInputStyle(tempCompleted: boolean) {
     textDecorationLine: tempCompleted ? "line-through" : "none",
     textDecorationStyle: "solid",
     textDecorationColor: "white",
-    marginHorizontal: 0,
     color: "white",
+    marginLeft: 3,
     paddingVertical: 6,
     fontSize: 16,
     fontFamily: "Inter-Bold",

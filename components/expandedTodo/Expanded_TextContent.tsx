@@ -33,7 +33,7 @@ export function Expanded_TextContent(
         />
       ) : (
         <TouchableOpacity onPress={handlOnPress}>
-          <Box paddingVertical={9}>
+          <Box marginLeft={3} paddingVertical={9}>
             <AnimatedTextCross
               isTodoCompleted={tempCompleted}
               animationDuration={animationDuration}
