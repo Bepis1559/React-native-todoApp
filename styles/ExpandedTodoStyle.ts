@@ -32,15 +32,30 @@ export const ExpanedTodoDateStyle: StyleProp<ViewStyle> = {
 export function getExpandedTodo_contentInputStyle(tempCompleted: boolean) {
   const ExpandedTodo_contentInputStyle: StyleProp<TextStyle> = {
     flex: 1,
+    lineHeight: 22,
     borderWidth: 0,
     textDecorationLine: tempCompleted ? "line-through" : "none",
     textDecorationStyle: "solid",
+    color: tempCompleted ? "gray" : "white",
     textDecorationColor: "white",
-    color: "white",
     marginLeft: 3,
     paddingVertical: 6,
     fontSize: 16,
     fontFamily: "Inter-Bold",
   };
   return ExpandedTodo_contentInputStyle;
+}
+
+export const ExpandedTodoTextBoxStyle: StyleProp<ViewStyle> = {
+  marginLeft: 3,
+  paddingVertical: 9,
+  marginRight: 12,
+};
+export function getExpandedTodoTextStyle(tempCompleted: boolean) {
+  const ExpandedTodoTextStyle: StyleProp<TextStyle> = {
+    textDecorationStyle: "solid",
+    textDecorationLine: tempCompleted ? "line-through" : "none",
+    color: tempCompleted ? "gray" : "white",
+  };
+  return ExpandedTodoTextStyle;
 }

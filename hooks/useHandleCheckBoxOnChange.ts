@@ -13,7 +13,7 @@ if (Platform.OS === "android") {
 export function useHandleCheckBoxOnChange(
   id: string,
   isCompleted: boolean,
-  timeout: number,
+  timeout?: number,
   configureTodosLayoutAnimation?: () => void,
 ): returnType {
   const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -33,7 +33,7 @@ export function useHandleCheckBoxOnChange(
 
   const handleOnChange = useCallback(() => {
     setTempCompleted((prev) => !prev);
-    if (timeout <= 0) {
+    if (!timeout) {
       handleTodos();
     } else {
       timeoutId.current = setTimeout(() => {

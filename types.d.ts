@@ -68,7 +68,7 @@ type Expanded_contentProps = {
 
 type Expandend_TextContentProps = {
   tempCompleted: boolean;
-  animationDuration: number;
+
   initialInputValue: string;
   textColor: string;
 };

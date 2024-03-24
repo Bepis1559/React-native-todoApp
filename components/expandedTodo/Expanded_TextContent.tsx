@@ -1,16 +1,20 @@
 import { Box, Text } from "@gluestack-ui/themed";
 import { type ReactElement, useRef, useState } from "react";
 import { TextInput, TouchableOpacity } from "react-native";
-import { getExpandedTodo_contentInputStyle } from "../../styles/ExpandedTodoStyle";
-import { AnimatedTextCross } from "../AnimatedTextCross";
+import {
+  ExpandedTodoTextBoxStyle,
+  getExpandedTodoTextStyle,
+  getExpandedTodo_contentInputStyle,
+} from "../../styles/ExpandedTodoStyle";
+import { useAtom } from "jotai";
+import { isEditingAtom } from "../../context/expandedTodoContext";
 
 export function Expanded_TextContent(
   props: Expandend_TextContentProps,
 ): ReactElement {
-  const { tempCompleted, animationDuration, textColor, initialInputValue } =
-    props;
+  const { tempCompleted, textColor, initialInputValue } = props;
   const [inputState, setInputState] = useState(initialInputValue);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useAtom(isEditingAtom);
   const inputRef = useRef<TextInput>(null);
 
   function handlOnPress() {
@@ -33,12 +37,10 @@ export function Expanded_TextContent(
         />
       ) : (
         <TouchableOpacity onPress={handlOnPress}>
-          <Box marginLeft={3} paddingVertical={9}>
-            <AnimatedTextCross
-              isTodoCompleted={tempCompleted}
-              animationDuration={animationDuration}
-            />
-            <Text>{inputState}</Text>
+          <Box style={ExpandedTodoTextBoxStyle}>
+            <Text style={getExpandedTodoTextStyle(tempCompleted)}>
+              {inputState}
+            </Text>
           </Box>
         </TouchableOpacity>
       )}
