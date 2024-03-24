@@ -1,4 +1,4 @@
-import { useAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Platform, UIManager } from "react-native";
 import { allTodosAtom } from "../context/allTodosContext";
@@ -17,7 +17,7 @@ export function useHandleCheckBoxOnChange(
   configureTodosLayoutAnimation?: () => void,
 ): returnType {
   const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [, setAllTodos] = useAtom(allTodosAtom);
+  const setAllTodos = useSetAtom(allTodosAtom);
   const [tempCompleted, setTempCompleted] = useState(isCompleted);
   const handleTodos = useCallback(() => {
     setAllTodos((prev) => {
