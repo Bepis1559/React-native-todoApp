@@ -17,12 +17,6 @@ export const ExpandedTodoStyle: StyleProp<ViewStyle> = {
   paddingHorizontal: 15,
 };
 
-export const ExpanedTodoRemarksStyle: StyleProp<ViewStyle> = {
-  ...baseStyle,
-  paddingVertical: 10,
-  paddingLeft: 15,
-};
-
 export const ExpanedTodoDateStyle: StyleProp<ViewStyle> = {
   ...baseStyle,
   paddingVertical: 17,

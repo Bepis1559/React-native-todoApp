@@ -7,6 +7,8 @@ import { Keyboard } from "react-native";
 
 type props = {
   isInteracting: boolean;
+  // content: string | undefined;
+  // remarks: string | undefined;
 };
 
 function Component({ isInteracting }: props): ReactElement {
@@ -16,6 +18,8 @@ function Component({ isInteracting }: props): ReactElement {
       pointerEvents={isInteracting ? "auto" : "none"}
       backgroundColor="transparent"
       onPress={() => {
+        // console.log("remarkRef : " + remarks);
+        // console.log("contentRef : " + content);
         setIsInteracting(false);
         Keyboard.dismiss();
       }}>

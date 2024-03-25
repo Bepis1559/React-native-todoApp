@@ -66,11 +66,12 @@ type Expanded_contentProps = {
   isCompleted: string;
   value: string;
   textColor: string;
+  contentRef: RefObject<TextInput>;
 };
 
 type Expandend_TextContentProps = {
   tempCompleted: boolean;
-
+  contentRef: RefObject<TextInput>;
   initialInputValue: string;
   textColor: string;
 };

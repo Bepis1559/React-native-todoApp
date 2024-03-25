@@ -6,7 +6,7 @@ import { useHandleCheckBoxOnChange } from "../../hooks/useHandleCheckBoxOnChange
 import { Expanded_TextContent } from "./Expanded_TextContent";
 
 function Component(props: Expanded_contentProps): ReactElement {
-  const { id, isCompleted, value, textColor } = props;
+  const { id, isCompleted, value, textColor, contentRef } = props;
   const [tempCompleted, handleOnChange] = useHandleCheckBoxOnChange(
     id,
     isCompleted == "false" ? false : true,
@@ -20,6 +20,7 @@ function Component(props: Expanded_contentProps): ReactElement {
         handleOnChange={handleOnChange}
       />
       <Expanded_TextContent
+        contentRef={contentRef}
         tempCompleted={tempCompleted}
         textColor={textColor}
         initialInputValue={value}

@@ -5,11 +5,12 @@ import { useSetAtom } from "jotai";
 import { isTextContentInteractedWithAtom } from "../../context/expandedTodoContext";
 
 function Component(props: Expandend_TextContentProps): ReactElement {
-  const { tempCompleted, textColor, initialInputValue } = props;
+  const { tempCompleted, textColor, initialInputValue, contentRef } = props;
   const [inputState, setInputState] = useState(initialInputValue);
   const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
   return (
     <TextInput
+      ref={contentRef}
       style={getExpandedTodo_contentInputStyle(tempCompleted)}
       multiline
       selectionColor={textColor}
