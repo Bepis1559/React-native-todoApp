@@ -14,11 +14,11 @@ import { isTextContentInteractedWithAtom } from "../../context/expandedTodoConte
 
 type props = {
   textColor: string;
+  remarks?: string;
 };
 
-function Component({ textColor }: props): ReactElement {
+function Component({ textColor, remarks }: props): ReactElement {
   const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
-
   return (
     <Box style={ExpanedTodoRemarksStyle}>
       <Input borderWidth={0} flex={1}>
@@ -31,6 +31,7 @@ function Component({ textColor }: props): ReactElement {
           onFocus={() => setIsInteracting(true)}
           selectionColor={textColor}
           placeholder="Remarks"
+          defaultValue={remarks}
           multiline
         />
       </Input>

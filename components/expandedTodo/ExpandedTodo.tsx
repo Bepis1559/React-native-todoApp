@@ -4,8 +4,9 @@ import { Expanded_date } from "./Expanded_date";
 import { Expanded_content } from "./Expanded_content";
 
 function Component(props: expandedTodoProps): ReactElement {
-  const { id, value, isCompleted, dueDate } = props;
+  const { id, value, isCompleted, dueDate, remarks } = props;
   const textColor = useRef("#528deb");
+
   return (
     <>
       <Expanded_content
@@ -15,7 +16,7 @@ function Component(props: expandedTodoProps): ReactElement {
         textColor={textColor.current}
       />
       <Expanded_date textColor={textColor.current} dueDate={dueDate} />
-      <Expanded_remarks textColor={textColor.current} />
+      <Expanded_remarks remarks={remarks} textColor={textColor.current} />
     </>
   );
 }

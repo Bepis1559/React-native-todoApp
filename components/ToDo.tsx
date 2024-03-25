@@ -8,7 +8,7 @@ import { useHandleCheckBoxOnChange } from "../hooks/useHandleCheckBoxOnChange";
 import { configureTodosLayoutAnimation } from "../helpers/configureTodosLayoutAnimation";
 
 function Component(props: todoComponentProps): ReactElement {
-  const { value, dueDate, id, isCompleted } = props;
+  const { value, dueDate, id, isCompleted, remarks } = props;
   const textCrossingAnimationDuration = useRef(100);
   const animationConfiguration = useCallback(
     () => configureTodosLayoutAnimation(textCrossingAnimationDuration.current),
@@ -22,6 +22,7 @@ function Component(props: todoComponentProps): ReactElement {
   );
   return (
     <ToDoContainer
+      remarks={remarks}
       value={value}
       dueDate={dueDate}
       isCompleted={isCompleted}

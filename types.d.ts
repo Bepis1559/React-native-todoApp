@@ -3,6 +3,7 @@ interface Itodo {
   id: string;
   value: string;
   isCompleted: boolean;
+  remarks?: string;
   dueDate?: string;
 }
 
@@ -17,8 +18,9 @@ type todosSection = {
 type todoComponentProps = {
   id: string;
   value: string;
-  dueDate?: string;
   isCompleted: boolean;
+  dueDate?: string;
+  remarks?: string;
 };
 
 type CheckBoxProps = {

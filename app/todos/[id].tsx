@@ -8,7 +8,7 @@ import { Expanded_headerRight } from "../../components/expandedTodo/Expanded_hea
 
 export default function Page(): ReactElement {
   const navigation = useNavigation();
-  const { id, isCompleted, value, dueDate } =
+  const { id, isCompleted, value, dueDate, remarks } =
     useLocalSearchParams() as unknown as expandedTodoProps;
   const isInteracting = useAtomValue(isTextContentInteractedWithAtom);
 
@@ -20,6 +20,7 @@ export default function Page(): ReactElement {
   return (
     <AppContainer>
       <ExpandedTodo
+        remarks={remarks}
         id={id}
         isCompleted={isCompleted}
         value={value}

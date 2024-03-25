@@ -21,7 +21,7 @@ export function getTodos() {
   const todo12 = new TodoModel("Go for a ride");
   const todo13 = new TodoModel("Explore a new place");
   const todo14 = new TodoModel("Buy bread", date3);
-  const todo15 = new TodoModel("Go to gym");
+  const todo15 = new TodoModel("Go to gym", undefined, "Should be done daily");
   const todo16 = new TodoModel("Finish project");
   const todo17 = new TodoModel("Build cool stuff");
   const todo18 = new TodoModel("coming soon", date5);
