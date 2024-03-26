@@ -21,13 +21,9 @@ export function useHandleCheckBoxOnChange(
   const [tempCompleted, setTempCompleted] = useState(isCompleted);
   const handleTodos = useCallback(() => {
     setAllTodos((prev) => {
-      return prev.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, isCompleted: !isCompleted };
-        } else {
-          return todo;
-        }
-      });
+      return prev.map((todo) =>
+        todo.id === id ? { ...todo, isCompleted: !isCompleted } : todo,
+      );
     });
   }, [id, isCompleted, setAllTodos]);
 

@@ -7,6 +7,7 @@ import { Expanded_headerRight } from "../../components/expandedTodo/Expanded_hea
 import { Expanded_content } from "../../components/expandedTodo/Expanded_content";
 import { Expanded_date } from "../../components/expandedTodo/Expanded_date";
 import { Expanded_remarks } from "../../components/expandedTodo/Expanded_remarks";
+import { useDebounce } from "use-debounce";
 
 export default function Page(): ReactElement {
   const navigation = useNavigation();
@@ -14,25 +15,28 @@ export default function Page(): ReactElement {
     useLocalSearchParams() as unknown as expandedTodoProps;
   const isInteracting = useAtomValue(isTextContentInteractedWithAtom);
   const textColor = useRef("#528deb");
-  const [content, setContent] = useState(value);
+  const [valueState, setValueState] = useState(value);
   const [remarksState, setRemarksState] = useState(remarks ?? "");
+  const [valueDebounced] = useDebounce(valueState, 500);
+  const [remarksDebounced] = useDebounce(remarksState, 500);
 
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <Expanded_headerRight
-          content={content}
-          remarks={remarksState}
+          id={id}
+          content={valueDebounced}
+          remarks={remarksDebounced}
           isInteracting={isInteracting}
         />
       ),
     });
-  }, [isInteracting, navigation]);
+  }, [isInteracting, navigation, valueDebounced, remarksDebounced]);
   return (
     <AppContainer>
       <Expanded_content
-        content={content}
-        setContent={setContent}
+        content={valueState}
+        setContent={setValueState}
         id={id}
         completed={isCompleted}
         textColor={textColor.current}
