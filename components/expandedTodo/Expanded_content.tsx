@@ -6,24 +6,24 @@ import { useHandleCheckBoxOnChange } from "../../hooks/useHandleCheckBoxOnChange
 import { Expanded_TextContent } from "./Expanded_TextContent";
 
 function Component(props: Expanded_contentProps): ReactElement {
-  const { id, isCompleted, value, textColor, contentRef } = props;
+  const { id, textColor, completed, content, setContent } = props;
   const [tempCompleted, handleOnChange] = useHandleCheckBoxOnChange(
     id,
-    isCompleted == "false" ? false : true,
+    completed == "false" ? false : true,
   );
   return (
     <Box accessibilityLabel="CheckBoxAndText" style={ExpandedTodoStyle}>
       <CheckBox
-        value={value}
+        value={content}
         id={id}
         completed={tempCompleted}
         handleOnChange={handleOnChange}
       />
       <Expanded_TextContent
-        contentRef={contentRef}
-        tempCompleted={tempCompleted}
+        setContent={setContent}
+        completed={tempCompleted}
         textColor={textColor}
-        initialInputValue={value}
+        content={content}
       />
     </Box>
   );

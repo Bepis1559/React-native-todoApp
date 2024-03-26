@@ -7,19 +7,19 @@ import { Keyboard } from "react-native";
 
 type props = {
   isInteracting: boolean;
-  // content: string | undefined;
-  // remarks: string | undefined;
+  content: string;
+  remarks: string;
 };
 
-function Component({ isInteracting }: props): ReactElement {
+function Component({ isInteracting, content, remarks }: props): ReactElement {
   const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
   return (
     <Button
       pointerEvents={isInteracting ? "auto" : "none"}
       backgroundColor="transparent"
       onPress={() => {
-        // console.log("remarkRef : " + remarks);
-        // console.log("contentRef : " + content);
+        console.log(content);
+        console.log(remarks);
         setIsInteracting(false);
         Keyboard.dismiss();
       }}>

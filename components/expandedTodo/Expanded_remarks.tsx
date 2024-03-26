@@ -1,11 +1,10 @@
 import { Box, Icon, InputIcon, ThreeDotsIcon } from "@gluestack-ui/themed";
 import {
   type ReactElement,
-  forwardRef,
-  type ForwardedRef,
   memo,
-  useEffect,
   useState,
+  Dispatch,
+  SetStateAction,
 } from "react";
 import {
   ExpandedTodoStyle,
@@ -17,16 +16,16 @@ import { TextInput } from "react-native";
 
 type props = {
   textColor: string;
-  // remarksRef: RefObject<TextInput>;
-  remarks?: string;
+  remarks: string;
+  setRemarksState: Dispatch<SetStateAction<string>>;
 };
 
-function Component(
-  { textColor, remarks }: props,
-  ref: ForwardedRef<TextInput>,
-): ReactElement {
+function Component({
+  textColor,
+  remarks,
+  setRemarksState,
+}: props): ReactElement {
   const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
-  const [state, setState] = useState(remarks);
   return (
     <Box style={ExpandedTodoStyle}>
       <InputIcon>
@@ -34,19 +33,17 @@ function Component(
       </InputIcon>
 
       <TextInput
-        ref={ref}
         style={getExpandedTodo_contentInputStyle(false)}
         onFocus={() => setIsInteracting(true)}
         selectionColor={textColor}
         placeholder="Remarks"
         placeholderTextColor="gray"
-        // defaultValue={remarks}
-        onChangeText={(text) => setState(text)}
-        value={state}
+        onChangeText={(text) => setRemarksState(text)}
+        value={remarks}
         multiline
       />
     </Box>
   );
 }
 
-export const Expanded_remarks = memo(forwardRef(Component));
+export const Expanded_remarks = memo(Component);

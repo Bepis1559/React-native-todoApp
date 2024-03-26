@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useRef } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import { AppContainer } from "../../wrappers/AppContainer";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useAtomValue } from "jotai";
@@ -7,7 +7,6 @@ import { Expanded_headerRight } from "../../components/expandedTodo/Expanded_hea
 import { Expanded_content } from "../../components/expandedTodo/Expanded_content";
 import { Expanded_date } from "../../components/expandedTodo/Expanded_date";
 import { Expanded_remarks } from "../../components/expandedTodo/Expanded_remarks";
-import { TextInput } from "react-native";
 
 export default function Page(): ReactElement {
   const navigation = useNavigation();
@@ -15,22 +14,15 @@ export default function Page(): ReactElement {
     useLocalSearchParams() as unknown as expandedTodoProps;
   const isInteracting = useAtomValue(isTextContentInteractedWithAtom);
   const textColor = useRef("#528deb");
-  const contentRef = useRef<TextInput>(null);
-  const remarksRef = useRef<TextInput>(null);
-
-  useEffect(() => {
-    remarksRef.current?.setNativeProps({ text: "Hello" });
-    setTimeout(() => {
-      console.log(remarksRef.current?.props);
-    }, 1000);
-  }, []);
+  const [content, setContent] = useState(value);
+  const [remarksState, setRemarksState] = useState(remarks ?? "");
 
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <Expanded_headerRight
-          // content={contentRef.current?.props.value}
-          // remarks={remarksRef.current?.props.value}
+          content={content}
+          remarks={remarksState}
           isInteracting={isInteracting}
         />
       ),
@@ -39,17 +31,17 @@ export default function Page(): ReactElement {
   return (
     <AppContainer>
       <Expanded_content
-        contentRef={contentRef}
+        content={content}
+        setContent={setContent}
         id={id}
-        isCompleted={isCompleted}
-        value={value}
+        completed={isCompleted}
         textColor={textColor.current}
       />
       <Expanded_date textColor={textColor.current} dueDate={dueDate} />
       <Expanded_remarks
-        remarks={remarks}
+        remarks={remarksState}
         textColor={textColor.current}
-        ref={remarksRef}
+        setRemarksState={setRemarksState}
       />
     </AppContainer>
   );

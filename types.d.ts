@@ -61,17 +61,16 @@ type Expanded_dateProps = {
   dueDate: string | undefined;
 };
 
+type baseExpandedProps = {
+  content: string;
+  setContent: Dispatch<SetStateAction<string>>;
+  textColor: string;
+};
 type Expanded_contentProps = {
+  completed: string;
   id: string;
-  isCompleted: string;
-  value: string;
-  textColor: string;
-  contentRef: RefObject<TextInput>;
-};
+} & baseExpandedProps;
 
-type Expandend_TextContentProps = {
-  tempCompleted: boolean;
-  contentRef: RefObject<TextInput>;
-  initialInputValue: string;
-  textColor: string;
-};
+type Expanded_TextContentProps = {
+  completed: boolean;
+} & baseExpandedProps;
