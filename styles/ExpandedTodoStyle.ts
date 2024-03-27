@@ -45,6 +45,12 @@ export const ExpandedTodoTextBoxStyle: StyleProp<ViewStyle> = {
   paddingVertical: 9,
   marginRight: 12,
 };
+
+export const Date_Time_IconsStyle: StyleProp<ViewStyle> = {
+  height: 22.5,
+  width: 22.5,
+  marginRight: 5,
+};
 export function getExpandedTodoTextStyle(tempCompleted: boolean) {
   const ExpandedTodoTextStyle: StyleProp<TextStyle> = {
     textDecorationStyle: "solid",

@@ -6,6 +6,7 @@ import { useCallback } from "react";
 import { useFonts } from "expo-font";
 import { getBackgroundColor, getTextColor } from "../styles/colors";
 import * as Notifications from "expo-notifications";
+import { Appearance } from "react-native";
 
 // Notifications.setNotificationHandler({
 //   handleNotification: async () => ({
@@ -16,6 +17,7 @@ import * as Notifications from "expo-notifications";
 // });
 
 export default function RootLayout() {
+  Appearance.setColorScheme("dark");
   const [fontsLoaded, fontError] = useFonts({
     "Inter-Bold": require("../assets/fonts/Inter-Bold.ttf"),
   });
