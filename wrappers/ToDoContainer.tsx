@@ -8,7 +8,7 @@ import { isTextContentInteractedWithAtom } from "../context/expandedTodoContext"
 
 function Component(props: toDoContainerProps): ReactElement {
   const [isNavigating, setIsNavigating] = useAtom(isNavigatingAtom);
-  const { children, id, dueDate, isCompleted, value, remarks } = props;
+  const { children, id, isCompleted, value, remarks, dueDate, dueTime } = props;
   const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
   const handlePressMemoized = useCallback(() => {
     if (!isNavigating) {
@@ -17,10 +17,11 @@ function Component(props: toDoContainerProps): ReactElement {
       router.push({
         pathname: `todos/${id}`,
         params: {
-          dueDate,
           isCompleted,
           value,
           remarks,
+          dueDate,
+          dueTime,
         },
       });
     }

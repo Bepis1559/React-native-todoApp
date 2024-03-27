@@ -5,11 +5,13 @@ export class TodoModel implements Itodo {
   value: string;
   isCompleted: boolean;
   dueDate?: string;
+  dueTime?: string;
   remarks?: string;
 
   constructor(
     value: string,
     dueDate?: string,
+    dueTime?: string,
     remarks?: string,
     isCompleted = false,
   ) {
@@ -17,6 +19,7 @@ export class TodoModel implements Itodo {
     this.value = value;
     this.isCompleted = isCompleted;
     this.dueDate = dueDate;
+    this.dueTime = dueTime;
     this.remarks = remarks;
   }
 }

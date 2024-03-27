@@ -1,11 +1,5 @@
 import { Box, Icon, InputIcon, ThreeDotsIcon } from "@gluestack-ui/themed";
-import {
-  type ReactElement,
-  memo,
-  useState,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { type ReactElement, memo, Dispatch, SetStateAction } from "react";
 import {
   ExpandedTodoStyle,
   getExpandedTodo_contentInputStyle,

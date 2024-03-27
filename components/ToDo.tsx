@@ -2,13 +2,13 @@ import { type ReactElement, memo, useRef, useCallback } from "react";
 import { CheckBox } from "./CheckBox";
 import { TodoContent } from "./TodoContent";
 import { Box } from "@gluestack-ui/themed";
-import { DueDate } from "./DueDate";
+import { DueDateTime } from "./DueDateTime";
 import { ToDoContainer } from "../wrappers/ToDoContainer";
 import { useHandleCheckBoxOnChange } from "../hooks/useHandleCheckBoxOnChange";
 import { configureTodosLayoutAnimation } from "../helpers/configureTodosLayoutAnimation";
 
 function Component(props: todoComponentProps): ReactElement {
-  const { value, dueDate, id, isCompleted, remarks } = props;
+  const { value, dueDate, dueTime, id, isCompleted, remarks } = props;
   const textCrossingAnimationDuration = useRef(100);
   const animationConfiguration = useCallback(
     () => configureTodosLayoutAnimation(textCrossingAnimationDuration.current),
@@ -22,9 +22,10 @@ function Component(props: todoComponentProps): ReactElement {
   );
   return (
     <ToDoContainer
+      dueTime={dueTime}
+      dueDate={dueDate}
       remarks={remarks}
       value={value}
-      dueDate={dueDate}
       isCompleted={isCompleted}
       id={id}>
       <CheckBox
@@ -39,7 +40,7 @@ function Component(props: todoComponentProps): ReactElement {
           animationDuration={textCrossingAnimationDuration.current}
           value={value}
         />
-        <DueDate dueDate={dueDate} />
+        <DueDateTime dueTime={dueTime} dueDate={dueDate} />
       </Box>
     </ToDoContainer>
   );

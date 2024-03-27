@@ -5,11 +5,12 @@ interface Itodo {
   isCompleted: boolean;
   remarks?: string;
   dueDate?: string;
+  dueTime?: string;
 }
 
 // types
 type todosGroupsNames = "overdue" | "later" | "no date" | "completed";
-
+type dateTimePickerMode = "date" | "time";
 type todosSection = {
   title: string;
   data: Todo[];
@@ -20,6 +21,7 @@ type todoComponentProps = {
   value: string;
   isCompleted: boolean;
   dueDate?: string;
+  dueTime?: string;
   remarks?: string;
 };
 
@@ -33,10 +35,6 @@ type CheckBoxProps = {
 type toDoContainerProps = {
   children: ReactNode;
 } & todoComponentProps;
-
-type CheckBoxDueDateProps = {
-  dueDate?: string;
-};
 
 type TodoContentProps = {
   isTodoCompleted: boolean;
@@ -56,10 +54,6 @@ type todoTextProps = {
 type expandedTodoProps = Omit<todoComponentProps, "isCompleted"> & {
   isCompleted: string;
 };
-type Expanded_dateProps = {
-  textColor: string;
-  dueDate: string | undefined;
-};
 
 type baseExpandedProps = {
   content: string;
@@ -74,3 +68,16 @@ type Expanded_contentProps = {
 type Expanded_TextContentProps = {
   completed: boolean;
 } & baseExpandedProps;
+
+type useDynamicRouteReturnType = [
+  id: string,
+  isCompleted: string,
+  navigation: NavigationProp<ReactNavigation.RootParamList>,
+  isInteracting: boolean,
+  valueState: string,
+  setValueState: Dispatch<SetStateAction<string>>,
+  textColor: string,
+  remarksState: string,
+  setRemarksState: Dispatch<SetStateAction<string>>,
+  initialDateTime?: Date,
+];

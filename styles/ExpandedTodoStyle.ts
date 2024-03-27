@@ -19,7 +19,7 @@ export const ExpandedTodoStyle: StyleProp<ViewStyle> = {
 
 export const ExpanedTodoDateStyle: StyleProp<ViewStyle> = {
   ...baseStyle,
-  paddingVertical: 17,
+  paddingVertical: 10,
   paddingLeft: 15,
 };
 
@@ -32,7 +32,7 @@ export function getExpandedTodo_contentInputStyle(tempCompleted: boolean) {
     textDecorationStyle: "solid",
     color: tempCompleted ? "gray" : "white",
     textDecorationColor: "white",
-    marginLeft: 3,
+    marginLeft: 9,
     paddingVertical: 6,
     fontSize: 16,
     fontFamily: "Inter-Bold",
@@ -47,9 +47,8 @@ export const ExpandedTodoTextBoxStyle: StyleProp<ViewStyle> = {
 };
 
 export const Date_Time_IconsStyle: StyleProp<ViewStyle> = {
-  height: 22.5,
-  width: 22.5,
-  marginRight: 5,
+  height: 24,
+  width: 24,
 };
 export function getExpandedTodoTextStyle(tempCompleted: boolean) {
   const ExpandedTodoTextStyle: StyleProp<TextStyle> = {

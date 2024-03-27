@@ -2,16 +2,20 @@ import {
   DateTimePickerAndroid,
   type DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
+import { useSetAtom } from "jotai";
 import { useCallback, useState } from "react";
+import { isDateTimePickerDismissedAtom } from "../context/expandedTodoContext";
 
-type mode = "date" | "time";
-
-type returnType = [showMode: (currentMode: mode) => void, date: Date];
-export function useDateTimePicker(): returnType {
-  const [date, setDate] = useState(new Date());
-
+type returnType = [
+  showMode: (currentMode: dateTimePickerMode) => void,
+  date: Date,
+];
+export function useDateTimePicker(initialDateObject?: Date): returnType {
+  const [date, setDate] = useState(initialDateObject ?? new Date());
+  const setDismissed = useSetAtom(isDateTimePickerDismissedAtom);
   const onChange = useCallback(
     (event: DateTimePickerEvent, selectedDate?: Date) => {
+      if (event.type == "dismissed") setDismissed(true);
       const currentDate = selectedDate;
       setDate(currentDate ?? new Date());
     },
@@ -19,7 +23,7 @@ export function useDateTimePicker(): returnType {
   );
 
   const showMode = useCallback(
-    (currentMode: mode) => {
+    (currentMode: dateTimePickerMode) => {
       DateTimePickerAndroid.open({
         minimumDate: new Date(),
         positiveButton: {

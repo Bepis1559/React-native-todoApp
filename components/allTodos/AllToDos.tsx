@@ -12,9 +12,11 @@ export function AllToDos(): ReactElement {
   const [refreshing, onRefresh] = useRefresh();
   //@ts-ignore
   const renderItem = useCallback(({ item }) => {
-    const { id, value, dueDate, isCompleted, remarks } = item as TodoModel;
+    const { id, value, dueDate, dueTime, isCompleted, remarks } =
+      item as TodoModel;
     return (
       <ToDo
+        dueTime={dueTime}
         remarks={remarks}
         isCompleted={isCompleted}
         key={id}
