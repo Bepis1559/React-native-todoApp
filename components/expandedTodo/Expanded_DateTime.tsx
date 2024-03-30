@@ -3,7 +3,10 @@ import { memo, type ReactElement } from "react";
 import { useDateTimePicker } from "../../hooks/useDateTimePicker";
 import { useSetAtom } from "jotai";
 import { allTodosAtom } from "../../context/allTodosContext";
-import { isDateTimePickerDismissedAtom } from "../../context/expandedTodoContext";
+import {
+  isDateTimePickerDismissedAtom,
+  isTextContentInteractedWithAtom,
+} from "../../context/expandedTodoContext";
 import {
   Box,
   Button,
@@ -16,6 +19,7 @@ import {
   Date_Time_IconsStyle,
   ExpanedTodoDateStyle,
 } from "../../styles/ExpandedTodoStyle";
+import { Keyboard } from "react-native";
 
 type props = {
   id: string;
@@ -27,6 +31,8 @@ function Component(props: props): ReactElement {
   const [showMode, date] = useDateTimePicker(initialDateTime);
   const setDismissed = useSetAtom(isDateTimePickerDismissedAtom);
   const setAllTodos = useSetAtom(allTodosAtom);
+  const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
+
   useFocusEffect(() => {
     return () => {
       setAllTodos((prev) =>
@@ -48,6 +54,8 @@ function Component(props: props): ReactElement {
       <Box style={ExpanedTodoDateStyle} accessibilityLabel="Date">
         <Button
           onPress={() => {
+            Keyboard.dismiss();
+            setIsInteracting(false);
             showMode("date");
             setDismissed(false);
           }}
@@ -63,6 +71,8 @@ function Component(props: props): ReactElement {
       <Box style={ExpanedTodoDateStyle} accessibilityLabel="Time">
         <Button
           onPress={() => {
+            Keyboard.dismiss();
+            setIsInteracting(false);
             showMode("time");
             setDismissed(false);
           }}
