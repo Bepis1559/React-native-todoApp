@@ -1,7 +1,7 @@
-1. Add button
-2. Add toggling date and time in expanded todo
-3. DB
-4. Overdue notifications
+
+1. Add toggling date and time in expanded todo
+2. DB
+3. Overdue notifications
 
 
 

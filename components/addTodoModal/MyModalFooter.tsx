@@ -1,15 +1,48 @@
 import { Box, Button, ButtonText, ModalFooter } from "@gluestack-ui/themed";
-import { type ReactElement, memo, useCallback } from "react";
+import { useSetAtom } from "jotai";
+import {
+  type ReactElement,
+  memo,
+  useCallback,
+  Dispatch,
+  SetStateAction,
+} from "react";
+import { allTodosAtom } from "../../context/allTodosContext";
+import { TodoModel } from "../../models/TodoModel";
 
 type footerProps = {
+  todoValue: string;
   closeModal: () => void;
+  date: Date;
+  isDateTimeEnabled: boolean;
+  setTodoValue: Dispatch<SetStateAction<string>>;
 };
-function Component({ closeModal }: footerProps): ReactElement {
+function Component({
+  closeModal,
+  date,
+  todoValue,
+  isDateTimeEnabled,
+  setTodoValue,
+}: footerProps): ReactElement {
+  const setTodos = useSetAtom(allTodosAtom);
   const handleClose = useCallback(() => closeModal(), []);
+  const handleAddingTodo = useCallback(() => {
+    setTodos((prev) => {
+      let dueDate = undefined;
+      let dueTime = undefined;
+      if (isDateTimeEnabled) {
+        dueDate = date.toLocaleDateString();
+        dueTime = date.toLocaleTimeString();
+      }
+      return [...prev, new TodoModel(todoValue, dueDate, dueTime)];
+    });
+    closeModal();
+    setTodoValue("");
+  }, [todoValue, date]);
   return (
     <ModalFooter marginTop={-10} justifyContent="space-between">
       <FooterButton closeModal={handleClose} actionType="negative" />
-      <FooterButton closeModal={closeModal} actionType="primary" />
+      <FooterButton closeModal={handleAddingTodo} actionType="primary" />
     </ModalFooter>
   );
 }
@@ -17,8 +50,9 @@ function Component({ closeModal }: footerProps): ReactElement {
 export const MyModalFooter = memo(Component);
 
 type footerButtonProps = {
+  closeModal: () => void;
   actionType: "negative" | "primary";
-} & footerProps;
+};
 
 function FooterButton({
   actionType,

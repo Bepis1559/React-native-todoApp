@@ -11,7 +11,7 @@ type returnType = [
   date: Date,
 ];
 export function useDateTimePicker(initialDateObject?: Date): returnType {
-  const [date, setDate] = useState(initialDateObject ?? new Date());
+  const [date, setDate] = useState<Date>(initialDateObject ?? new Date());
   const setDismissed = useSetAtom(isDateTimePickerDismissedAtom);
   const onChange = useCallback(
     (event: DateTimePickerEvent, selectedDate?: Date) => {

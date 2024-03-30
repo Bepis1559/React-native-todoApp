@@ -13,7 +13,6 @@ import {
   memo,
   useRef,
   type ReactElement,
-  useState,
   type Dispatch,
   type SetStateAction,
 } from "react";
@@ -22,10 +21,18 @@ type props = {
   todoValue: string;
   setTodoValue: Dispatch<SetStateAction<string>>;
   showMode: (currentMode: dateTimePickerMode) => void;
+  isDateTimeEnabled: boolean;
+  setIsDateTimeEnabled: Dispatch<SetStateAction<boolean>>;
 };
 
-function Component({ showMode, todoValue, setTodoValue }: props): ReactElement {
-  const [isDateTimeDisabled, setIsDateTimeDisabled] = useState(false);
+function Component(props: props): ReactElement {
+  const {
+    showMode,
+    todoValue,
+    setTodoValue,
+    isDateTimeEnabled,
+    setIsDateTimeEnabled,
+  } = props;
   const color = useRef("#528deb");
   return (
     <ModalBody>
@@ -48,22 +55,22 @@ function Component({ showMode, todoValue, setTodoValue }: props): ReactElement {
         flexDirection="row"
         justifyContent="flex-start">
         <Button
-          isDisabled={!isDateTimeDisabled}
+          isDisabled={!isDateTimeEnabled}
           onPress={() => showMode("date")}
           marginLeft={-17}
           backgroundColor="transparent">
           <Icon iconType={"calendar"} />
         </Button>
         <Button
-          isDisabled={!isDateTimeDisabled}
+          isDisabled={!isDateTimeEnabled}
           onPress={() => showMode("time")}
           marginLeft={-25}
           backgroundColor="transparent">
           <Icon iconType="clock" />
         </Button>
         <Switch
-          value={isDateTimeDisabled}
-          onToggle={() => setIsDateTimeDisabled((prev) => !prev)}
+          value={isDateTimeEnabled}
+          onToggle={() => setIsDateTimeEnabled((prev) => !prev)}
           marginLeft={"auto"}
           marginRight={8}
         />

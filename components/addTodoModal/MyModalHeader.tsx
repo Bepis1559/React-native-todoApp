@@ -15,7 +15,7 @@ function Component(): ReactElement {
         Add Todo
       </Heading>
       <Box right={5} position="absolute" borderRadius={10} overflow="hidden">
-        <ModalCloseButton android_ripple={{ color: "black" }}>
+        <ModalCloseButton android_ripple={{ color: "#333" }}>
           <Icon as={CloseIcon} />
         </ModalCloseButton>
       </Box>

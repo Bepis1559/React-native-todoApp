@@ -16,7 +16,7 @@ function Component({ id }: props): ReactElement {
     <Box style={[Expanded_DeleteStyle, { marginBottom: bottom }]}>
       <Button
         onPress={deleteTodo}
-        android_ripple={{ color: "#000000" }}
+        android_ripple={{ color: "#333" }}
         backgroundColor="transparent">
         <ButtonIcon h={25} w={25} as={TrashIcon} />
       </Button>

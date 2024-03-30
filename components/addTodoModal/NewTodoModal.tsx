@@ -11,6 +11,7 @@ function Component(): ReactElement {
   const [showModal, setShowModal] = useAtom(isNewTodoModalOpenedAtom);
   const [showMode, date] = useDateTimePicker();
   const [todoValue, setTodoValue] = useState("");
+  const [isDateTimeEnabled, setIsDateTimeEnabled] = useState(false);
 
   const closeModal = useCallback(() => setShowModal(false), [setShowModal]);
   const ref = useRef(null);
@@ -20,12 +21,20 @@ function Component(): ReactElement {
       <ModalContent borderRadius={15}>
         <MyModalHeader />
         <MyModalBody
+          isDateTimeEnabled={isDateTimeEnabled}
+          setIsDateTimeEnabled={setIsDateTimeEnabled}
           showMode={showMode}
           todoValue={todoValue}
           setTodoValue={setTodoValue}
         />
 
-        <MyModalFooter closeModal={closeModal} />
+        <MyModalFooter
+          isDateTimeEnabled={isDateTimeEnabled}
+          todoValue={todoValue}
+          date={date}
+          closeModal={closeModal}
+          setTodoValue={setTodoValue}
+        />
       </ModalContent>
     </Modal>
   );
