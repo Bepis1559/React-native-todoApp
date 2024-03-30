@@ -1,7 +1,6 @@
-1. Delete button
-2. Add button
-3. DB
-4. Overdue notifications
+1. Add button
+2. DB
+3. Overdue notifications
 
 
 
