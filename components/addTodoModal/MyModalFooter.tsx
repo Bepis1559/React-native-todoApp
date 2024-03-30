@@ -1,13 +1,14 @@
 import { Box, Button, ButtonText, ModalFooter } from "@gluestack-ui/themed";
-import { type ReactElement, memo } from "react";
+import { type ReactElement, memo, useCallback } from "react";
 
 type footerProps = {
   closeModal: () => void;
 };
 function Component({ closeModal }: footerProps): ReactElement {
+  const handleClose = useCallback(() => closeModal(), []);
   return (
     <ModalFooter marginTop={-10} justifyContent="space-between">
-      <FooterButton closeModal={closeModal} actionType="negative" />
+      <FooterButton closeModal={handleClose} actionType="negative" />
       <FooterButton closeModal={closeModal} actionType="primary" />
     </ModalFooter>
   );

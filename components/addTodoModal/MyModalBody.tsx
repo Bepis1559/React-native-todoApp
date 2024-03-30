@@ -9,12 +9,23 @@ import {
   ModalBody,
   Switch,
 } from "@gluestack-ui/themed";
-import { memo, useRef, type ReactElement, useState } from "react";
-import { useDateTimePicker } from "../../hooks/useDateTimePicker";
+import {
+  memo,
+  useRef,
+  type ReactElement,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 
-function Component(): ReactElement {
+type props = {
+  todoValue: string;
+  setTodoValue: Dispatch<SetStateAction<string>>;
+  showMode: (currentMode: dateTimePickerMode) => void;
+};
+
+function Component({ showMode, todoValue, setTodoValue }: props): ReactElement {
   const [isDateTimeDisabled, setIsDateTimeDisabled] = useState(false);
-  const [showMode] = useDateTimePicker();
   const color = useRef("#528deb");
   return (
     <ModalBody>
@@ -25,6 +36,8 @@ function Component(): ReactElement {
         borderWidth={1}
         variant="outline">
         <InputField
+          value={todoValue}
+          onChangeText={(text) => setTodoValue(text)}
           selectionColor={color.current}
           placeholder="Enter todo here"
         />
