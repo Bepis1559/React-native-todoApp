@@ -4,7 +4,7 @@ import { memo, type ReactElement } from "react";
 import {
   TextCrossBoxStyle,
   TextCrossStyle,
-} from "../styles/CheckBoxTextContent";
+} from "../../styles/CheckBoxTextContent";
 
 function Component(props: AnimatedTextCrossProps): ReactElement {
   const { isTodoCompleted, animationDuration } = props;

@@ -1,6 +1,6 @@
 import { RefreshControl, SectionList } from "@gluestack-ui/themed";
 import { type ReactElement, useCallback } from "react";
-import { ToDo } from "../ToDo";
+import { ToDo } from "../mainPageTodo/ToDo";
 import type { TodoModel } from "../../models/TodoModel";
 import { useAllTodos } from "../../hooks/useAllTodos";
 import { useRefresh } from "../../hooks/useRefresh";

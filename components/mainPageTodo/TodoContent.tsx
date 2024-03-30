@@ -1,6 +1,6 @@
 import { Box } from "@gluestack-ui/themed";
-import { AnimatedTextCross } from "./AnimatedTextCross";
 import { memo, type ReactElement } from "react";
+import { AnimatedTextCross } from "./AnimatedTextCross";
 import { TodoText } from "./TodoText";
 
 function Component(props: TodoContentProps): ReactElement {

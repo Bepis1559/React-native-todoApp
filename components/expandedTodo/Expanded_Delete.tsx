@@ -2,6 +2,7 @@ import { Box, Button, ButtonIcon, TrashIcon } from "@gluestack-ui/themed";
 import { memo, type ReactElement } from "react";
 import { Expanded_DeleteStyle } from "../../styles/ExpandedTodoStyle";
 import { useDeleteTodo } from "../../hooks/useDeleteTodo";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type props = {
   id: string;
@@ -9,8 +10,10 @@ type props = {
 
 function Component({ id }: props): ReactElement {
   const [deleteTodo] = useDeleteTodo(id);
+  const { bottom } = useSafeAreaInsets();
+
   return (
-    <Box style={Expanded_DeleteStyle}>
+    <Box style={[Expanded_DeleteStyle, { marginBottom: bottom }]}>
       <Button
         onPress={deleteTodo}
         android_ripple={{ color: "#000000" }}

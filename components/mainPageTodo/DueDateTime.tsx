@@ -1,7 +1,7 @@
 import { Box, Text } from "@gluestack-ui/themed";
 import { type ReactElement, memo } from "react";
 import { isPast } from "date-fns";
-import { converDateAndTimeToDateObject } from "../helpers/converDateAndTimeToDateObject";
+import { converDateAndTimeToDateObject } from "../../helpers/converDateAndTimeToDateObject";
 
 type props = {
   dueDate?: string;

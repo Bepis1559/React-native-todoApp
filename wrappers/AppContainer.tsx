@@ -10,15 +10,11 @@ type ScrollContainerProps = {
   children: ReactNode;
 };
 function Component({ children }: ScrollContainerProps): ReactElement {
-  const { top, bottom } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
   const bgColor = useMemo(() => getBackgroundColor(), []);
   return (
     <SafeAreaProvider>
-      <Box
-        flex={1}
-        paddingTop={top}
-        paddingBottom={bottom}
-        backgroundColor={bgColor}>
+      <Box flex={1} paddingTop={top} backgroundColor={bgColor}>
         {children}
       </Box>
     </SafeAreaProvider>
