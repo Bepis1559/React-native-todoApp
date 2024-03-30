@@ -69,3 +69,11 @@ export function getExpandedTodoTextStyle(tempCompleted: boolean) {
   };
   return ExpandedTodoTextStyle;
 }
+
+export const Expanded_DeleteStyle: StyleProp<ViewStyle> = {
+  borderRadius: 10,
+  overflow: "hidden",
+  alignSelf: "center",
+  marginTop: "auto",
+  marginBottom: 5,
+};

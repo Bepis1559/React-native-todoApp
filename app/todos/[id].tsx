@@ -5,6 +5,8 @@ import { Expanded_content } from "../../components/expandedTodo/Expanded_content
 import { Expanded_remarks } from "../../components/expandedTodo/Expanded_remarks";
 import { useDynamicRoute } from "../../hooks/useDynamicRoute";
 import { Expanded_DateTime } from "../../components/expandedTodo/Expanded_DateTime";
+import { Box, Button, ButtonIcon, Text, TrashIcon } from "@gluestack-ui/themed";
+import { Expanded_Delete } from "../../components/expandedTodo/Expanded_Delete";
 export default function Page(): ReactElement {
   const [
     id,
@@ -45,6 +47,7 @@ export default function Page(): ReactElement {
         textColor={textColor}
         setRemarksState={setRemarksState}
       />
+      <Expanded_Delete />
     </AppContainer>
   );
 }
