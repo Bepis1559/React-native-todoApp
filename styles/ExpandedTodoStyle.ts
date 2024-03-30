@@ -17,10 +17,21 @@ export const ExpandedTodoStyle: StyleProp<ViewStyle> = {
   paddingHorizontal: 15,
 };
 
-export const ExpanedTodoDateStyle: StyleProp<ViewStyle> = {
-  ...baseStyle,
-  paddingVertical: 10,
-  paddingLeft: 15,
+type ExpanedTodoDateStyleType = {
+  box: StyleProp<ViewStyle>;
+  button: StyleProp<ViewStyle>;
+};
+
+export const ExpanedTodoDateStyle: ExpanedTodoDateStyleType = {
+  box: {
+    ...baseStyle,
+    paddingVertical: 10,
+    paddingLeft: 15,
+  },
+  button: {
+    backgroundColor: "transparent",
+    paddingHorizontal: 5,
+  },
 };
 
 export function getExpandedTodo_contentInputStyle(tempCompleted: boolean) {

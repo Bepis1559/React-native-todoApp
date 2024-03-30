@@ -27,11 +27,8 @@ function Component(props: props): ReactElement {
 
   return (
     <>
-      <Box style={ExpanedTodoDateStyle} accessibilityLabel="Date">
-        <Button
-          onPress={handleDatePress}
-          backgroundColor="transparent"
-          paddingHorizontal={5}>
+      <Box style={ExpanedTodoDateStyle.box}>
+        <Button style={ExpanedTodoDateStyle.button} onPress={handleDatePress}>
           <ButtonIcon style={Date_Time_IconsStyle} as={CalendarDaysIcon} />
         </Button>
         <Text marginLeft={5} color={textColor}>
@@ -39,11 +36,8 @@ function Component(props: props): ReactElement {
         </Text>
       </Box>
 
-      <Box style={ExpanedTodoDateStyle} accessibilityLabel="Time">
-        <Button
-          onPress={handleTimePress}
-          backgroundColor="transparent"
-          paddingHorizontal={5}>
+      <Box style={ExpanedTodoDateStyle.box}>
+        <Button onPress={handleTimePress} style={ExpanedTodoDateStyle.button}>
           <ButtonIcon style={Date_Time_IconsStyle} as={ClockIcon} />
         </Button>
         <Text marginLeft={5} color={textColor}>
