@@ -1,12 +1,4 @@
-import { useFocusEffect } from "expo-router";
 import { memo, type ReactElement } from "react";
-import { useDateTimePicker } from "../../hooks/useDateTimePicker";
-import { useSetAtom } from "jotai";
-import { allTodosAtom } from "../../context/allTodosContext";
-import {
-  isDateTimePickerDismissedAtom,
-  isTextContentInteractedWithAtom,
-} from "../../context/expandedTodoContext";
 import {
   Box,
   Button,
@@ -19,7 +11,7 @@ import {
   Date_Time_IconsStyle,
   ExpanedTodoDateStyle,
 } from "../../styles/ExpandedTodoStyle";
-import { Keyboard } from "react-native";
+import { useExpanded_DateTime } from "../../hooks/useExpanded_DateTime";
 
 type props = {
   id: string;
@@ -28,37 +20,16 @@ type props = {
 };
 function Component(props: props): ReactElement {
   const { textColor, id, initialDateTime } = props;
-  const [showMode, date] = useDateTimePicker(initialDateTime);
-  const setDismissed = useSetAtom(isDateTimePickerDismissedAtom);
-  const setAllTodos = useSetAtom(allTodosAtom);
-  const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
-
-  useFocusEffect(() => {
-    return () => {
-      setAllTodos((prev) =>
-        prev.map((todo) =>
-          todo.id == id
-            ? {
-                ...todo,
-                dueDate: date.toLocaleDateString(),
-                dueTime: date.toLocaleTimeString(),
-              }
-            : todo,
-        ),
-      );
-    };
-  });
+  const [handleDatePress, handleTimePress, date] = useExpanded_DateTime(
+    id,
+    initialDateTime,
+  );
 
   return (
     <>
       <Box style={ExpanedTodoDateStyle} accessibilityLabel="Date">
         <Button
-          onPress={() => {
-            Keyboard.dismiss();
-            setIsInteracting(false);
-            showMode("date");
-            setDismissed(false);
-          }}
+          onPress={handleDatePress}
           backgroundColor="transparent"
           paddingHorizontal={5}>
           <ButtonIcon style={Date_Time_IconsStyle} as={CalendarDaysIcon} />
@@ -70,12 +41,7 @@ function Component(props: props): ReactElement {
 
       <Box style={ExpanedTodoDateStyle} accessibilityLabel="Time">
         <Button
-          onPress={() => {
-            Keyboard.dismiss();
-            setIsInteracting(false);
-            showMode("time");
-            setDismissed(false);
-          }}
+          onPress={handleTimePress}
           backgroundColor="transparent"
           paddingHorizontal={5}>
           <ButtonIcon style={Date_Time_IconsStyle} as={ClockIcon} />
