@@ -14,7 +14,6 @@ export function useDynamicRoute(): useDynamicRouteReturnType {
   const { id, isCompleted, value, remarks, dueDate, dueTime } =
     useLocalSearchParams() as unknown as expandedTodoProps;
   const setAllTodos = useSetAtom(allTodosAtom);
-
   const navigation = useNavigation();
   const isInteracting = useAtomValue(isTextContentInteractedWithAtom);
   const textColor = useRef("#528deb");
