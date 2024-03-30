@@ -12,7 +12,7 @@ function Component(props: Expanded_contentProps): ReactElement {
     completed == "false" ? false : true,
   );
   return (
-    <Box accessibilityLabel="CheckBoxAndText" style={ExpandedTodoStyle}>
+    <Box style={ExpandedTodoStyle}>
       <CheckBox
         value={content}
         id={id}

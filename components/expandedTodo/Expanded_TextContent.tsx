@@ -1,4 +1,4 @@
-import { type ReactElement, useState, memo } from "react";
+import { type ReactElement, memo } from "react";
 import { TextInput } from "react-native";
 import { getExpandedTodo_contentInputStyle } from "../../styles/ExpandedTodoStyle";
 import { useSetAtom } from "jotai";

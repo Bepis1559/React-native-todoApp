@@ -1,26 +1,8 @@
-0. Add overdues functionality
-1. Handle expanded todos
-2. Handle add button
-3. Handle db
-4. Add overdue notifications
+1. Delete button
+2. Add button
+3. DB
+4. Overdue notifications
 
 
 
 
-
--- Expanded todo rows
-
-  1. Navigation / Header - back arrow + tick icon for saving changes (appers after the input is clicked)
-
-  2. Views
-
- * checkbox + todo text (as input)
- * date selector icon + (if date isn't present) - add reminder , otherwite - + date + cross button (for removing the date)
- * Save to db also (if it's more important to you) + toggle button
-
- 3. Right above tabbar
-  
-  * Delete icon + 'delete' text , for deleting the todo
-  
-
-  !!!! Fix multi click bugging
