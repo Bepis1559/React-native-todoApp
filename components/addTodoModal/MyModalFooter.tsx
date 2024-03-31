@@ -16,6 +16,7 @@ type footerProps = {
   date: Date;
   isDateTimeEnabled: boolean;
   setTodoValue: Dispatch<SetStateAction<string>>;
+  setIsDateTimeEnabled: Dispatch<SetStateAction<boolean>>;
 };
 function Component({
   closeModal,
@@ -23,6 +24,7 @@ function Component({
   todoValue,
   isDateTimeEnabled,
   setTodoValue,
+  setIsDateTimeEnabled,
 }: footerProps): ReactElement {
   const setTodos = useSetAtom(allTodosAtom);
   const handleClose = useCallback(() => closeModal(), []);
@@ -34,9 +36,18 @@ function Component({
         dueDate = date.toLocaleDateString();
         dueTime = date.toLocaleTimeString();
       }
-      return [...prev, new TodoModel(todoValue, dueDate, dueTime)];
+
+      return [
+        ...prev,
+        new TodoModel(
+          todoValue == "" ? "Empty todo" : todoValue,
+          dueDate,
+          dueTime,
+        ),
+      ];
     });
     closeModal();
+    setIsDateTimeEnabled(false);
     setTodoValue("");
   }, [todoValue, date]);
   return (

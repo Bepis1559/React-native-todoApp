@@ -29,6 +29,7 @@ function Component(): ReactElement {
         />
 
         <MyModalFooter
+          setIsDateTimeEnabled={setIsDateTimeEnabled}
           isDateTimeEnabled={isDateTimeEnabled}
           todoValue={todoValue}
           date={date}
