@@ -3,6 +3,7 @@ import { useDateTimePicker } from "./useDateTimePicker";
 
 import { allTodosAtom } from "../context/allTodosContext";
 import { useFocusEffect } from "expo-router";
+import { isTodoDateTimeLoadingAtom } from "../context/isTodoDateTimeLoading";
 
 type returnType = [date: Date];
 
@@ -13,8 +14,9 @@ export function useUpdateDateTimeValues(
 ): returnType {
   const [, date] = useDateTimePicker(initialDateTime);
   const setAllTodos = useSetAtom(allTodosAtom);
-
+  const setIsTodoDataLoading = useSetAtom(isTodoDateTimeLoadingAtom);
   useFocusEffect(() => {
+    setIsTodoDataLoading(true);
     return () => {
       setAllTodos((prev) =>
         prev.map((todo) =>
@@ -31,6 +33,7 @@ export function useUpdateDateTimeValues(
             : todo,
         ),
       );
+      setIsTodoDataLoading(false);
     };
   });
 

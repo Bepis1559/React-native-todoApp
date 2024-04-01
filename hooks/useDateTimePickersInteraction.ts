@@ -13,24 +13,18 @@ export function useDateTimePickersInteraction(
   initialDateTime?: Date,
 ): returnType {
   const [showMode] = useDateTimePicker(initialDateTime);
-
   const setDismissed = useSetAtom(isDateTimePickerDismissedAtom);
-
   const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
 
-  const stopKeyboardInteraction = useCallback(
-    () => setIsInteracting(false),
-    [setIsInteracting],
-  );
   const showDateTimePicker = useCallback(
     () => setDismissed(false),
     [setDismissed],
   );
   const handlePress = useCallback(() => {
     Keyboard.dismiss();
-    stopKeyboardInteraction();
+    setIsInteracting(false);
     showDateTimePicker();
-  }, [Keyboard, stopKeyboardInteraction, showDateTimePicker]);
+  }, [Keyboard, showDateTimePicker]);
 
   const handleTimePress = useCallback(() => {
     handlePress();

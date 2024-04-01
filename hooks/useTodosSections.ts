@@ -10,7 +10,7 @@ import {
 import { useMemo } from "react";
 
 type returnType = [todosSection[]];
-export function useAllTodos(): returnType {
+export function useTodosSections(): returnType {
   const allTodos = useAtomValue(allTodosAtom);
 
   const overdueTodos = useMemo(() => getOverdueTodos(allTodos), [allTodos]);
