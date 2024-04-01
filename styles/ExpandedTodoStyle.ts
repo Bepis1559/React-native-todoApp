@@ -17,6 +17,13 @@ export const ExpandedTodoStyle: StyleProp<ViewStyle> = {
   paddingHorizontal: 15,
 };
 
+export const ExpandedTodoDateTimeSwtichStyle: StyleProp<ViewStyle> = {
+  ...baseStyle,
+  justifyContent: "flex-start",
+  paddingVertical: 5,
+  paddingHorizontal: 20,
+};
+
 type ExpanedTodoDateStyleType = {
   box: StyleProp<ViewStyle>;
   button: StyleProp<ViewStyle>;

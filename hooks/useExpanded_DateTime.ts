@@ -1,4 +1,4 @@
-import { SetStateAction, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { useDateTimePicker } from "./useDateTimePicker";
 import {
   isDateTimePickerDismissedAtom,
@@ -17,6 +17,7 @@ type returnType = [
 
 export function useExpanded_DateTime(
   id: string,
+  isDateTimeEnabled: boolean,
   initialDateTime?: Date,
 ): returnType {
   const [showMode, date] = useDateTimePicker(initialDateTime);
@@ -32,29 +33,38 @@ export function useExpanded_DateTime(
     () => setDismissed(false),
     [setDismissed],
   );
+  const handlePress = useCallback(() => {
+    Keyboard.dismiss();
+    stopKeyboardInteraction();
+    showDateTimePicker();
+  }, [Keyboard, stopKeyboardInteraction, showDateTimePicker]);
 
-  function handleTimePress() {
-    Keyboard.dismiss();
-    stopKeyboardInteraction();
+  const handleTimePress = useCallback(() => {
+    handlePress();
     showMode("time");
-    showDateTimePicker();
-  }
-  function handleDatePress() {
-    Keyboard.dismiss();
-    stopKeyboardInteraction();
+  }, [handlePress, showMode]);
+
+  const handleDatePress = useCallback(() => {
+    handlePress();
     showMode("date");
-    showDateTimePicker();
-  }
+  }, [handlePress, showMode]);
 
   useFocusEffect(() => {
     return () => {
+      let dateValue = initialDateTime?.toLocaleDateString();
+      let timeValue = initialDateTime?.toLocaleTimeString();
+
+      if (isDateTimeEnabled) {
+        dateValue = date.toLocaleDateString();
+        timeValue = date.toLocaleTimeString();
+      }
       setAllTodos((prev) =>
         prev.map((todo) =>
           todo.id == id
             ? {
                 ...todo,
-                dueDate: date.toLocaleDateString(),
-                dueTime: date.toLocaleTimeString(),
+                dueDate: isDateTimeEnabled ? dateValue : undefined,
+                dueTime: isDateTimeEnabled ? timeValue : undefined,
               }
             : todo,
         ),

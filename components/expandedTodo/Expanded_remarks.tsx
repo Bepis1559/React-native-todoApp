@@ -1,4 +1,4 @@
-import { Box, Icon, InputIcon, ThreeDotsIcon } from "@gluestack-ui/themed";
+import { Box } from "@gluestack-ui/themed";
 import { type ReactElement, memo, Dispatch, SetStateAction } from "react";
 import {
   ExpandedTodoStyle,
@@ -22,10 +22,6 @@ function Component({
   const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
   return (
     <Box style={ExpandedTodoStyle}>
-      <InputIcon>
-        <Icon as={ThreeDotsIcon} />
-      </InputIcon>
-
       <TextInput
         style={getExpandedTodo_contentInputStyle(false)}
         onFocus={() => setIsInteracting(true)}

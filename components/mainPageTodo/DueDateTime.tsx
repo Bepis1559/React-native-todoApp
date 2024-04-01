@@ -10,12 +10,13 @@ type props = {
 
 function Component({ dueDate, dueTime }: props): ReactElement {
   const dateObject = converDateAndTimeToDateObject(dueDate, dueTime);
+
   return (
     <Box>
       <Text
         userSelect="none"
         fontSize={"$xs"}
-        display={dueDate && dueTime ? "flex" : "none"}
+        display={dueDate ? "flex" : "none"}
         color={dateObject && isPast(dateObject) ? "#cf2b39" : "$coolGray400"}>
         {dueDate} &nbsp;{dueTime}
       </Text>

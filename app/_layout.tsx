@@ -17,7 +17,7 @@ import { Appearance } from "react-native";
 // });
 
 export default function RootLayout() {
-  Appearance.setColorScheme("dark");
+  // Appearance.setColorScheme("dark");
   const [fontsLoaded, fontError] = useFonts({
     "Inter-Bold": require("../assets/fonts/Inter-Bold.ttf"),
   });

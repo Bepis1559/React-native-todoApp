@@ -6,7 +6,6 @@ export function getOverdueTodos(todos: TodoModel[]) {
   return todos.filter(
     ({ dueDate, dueTime, isCompleted }) =>
       dueDate &&
-      dueTime &&
       isPast(converDateAndTimeToDateObject(dueDate, dueTime)) &&
       !isCompleted,
   );
@@ -16,7 +15,6 @@ export function getLaterTodos(todos: TodoModel[]) {
   return todos.filter(
     ({ isCompleted, dueDate, dueTime }) =>
       dueDate &&
-      dueTime &&
       !isPast(converDateAndTimeToDateObject(dueDate, dueTime)) &&
       !isCompleted,
   );

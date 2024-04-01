@@ -19,9 +19,10 @@ export function useDynamicRoute(): useDynamicRouteReturnType {
   const textColor = useRef("#528deb");
   const [valueState, setValueState] = useState(value);
   const [remarksState, setRemarksState] = useState(remarks ?? "");
+
   const initialDateTime = useMemo(() => {
     const dateTimeObj = converDateAndTimeToDateObject(dueDate, dueTime);
-    return isValid(dateTimeObj) ? dateTimeObj : new Date();
+    return isValid(dateTimeObj) ? dateTimeObj : undefined;
   }, [dueDate, dueTime]);
 
   useFocusEffect(() => {
