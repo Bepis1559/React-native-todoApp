@@ -4,25 +4,18 @@ import {
   isDateTimePickerDismissedAtom,
   isTextContentInteractedWithAtom,
 } from "../context/expandedTodoContext";
-import { allTodosAtom } from "../context/allTodosContext";
-import { useFocusEffect } from "expo-router";
 import { useCallback } from "react";
 import { Keyboard } from "react-native";
 
-type returnType = [
-  handleDatePress: () => void,
-  handleTimePress: () => void,
-  date: Date,
-];
+type returnType = [handleDatePress: () => void, handleTimePress: () => void];
 
-export function useExpanded_DateTime(
-  id: string,
-  isDateTimeEnabled: boolean,
+export function useDateTimePickersInteraction(
   initialDateTime?: Date,
 ): returnType {
-  const [showMode, date] = useDateTimePicker(initialDateTime);
+  const [showMode] = useDateTimePicker(initialDateTime);
+
   const setDismissed = useSetAtom(isDateTimePickerDismissedAtom);
-  const setAllTodos = useSetAtom(allTodosAtom);
+
   const setIsInteracting = useSetAtom(isTextContentInteractedWithAtom);
 
   const stopKeyboardInteraction = useCallback(
@@ -49,25 +42,5 @@ export function useExpanded_DateTime(
     showMode("date");
   }, [handlePress, showMode]);
 
-  useFocusEffect(() => {
-    return () => {
-      setAllTodos((prev) =>
-        prev.map((todo) =>
-          todo.id == id
-            ? {
-                ...todo,
-                dueDate: isDateTimeEnabled
-                  ? date.toLocaleDateString()
-                  : undefined,
-                dueTime: isDateTimeEnabled
-                  ? date.toLocaleTimeString()
-                  : undefined,
-              }
-            : todo,
-        ),
-      );
-    };
-  });
-
-  return [handleDatePress, handleTimePress, date];
+  return [handleDatePress, handleTimePress];
 }

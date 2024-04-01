@@ -1,10 +1,4 @@
-import {
-  memo,
-  useState,
-  type ReactElement,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
+import { memo, type ReactElement } from "react";
 import {
   Box,
   Button,
@@ -17,7 +11,8 @@ import {
   Date_Time_IconsStyle,
   ExpanedTodoDateStyle,
 } from "../../styles/ExpandedTodoStyle";
-import { useExpanded_DateTime } from "../../hooks/useExpanded_DateTime";
+import { useUpdateDateTimeValues } from "../../hooks/useUpdateDateTimeValues";
+import { useDateTimePickersInteraction } from "../../hooks/useDateTimePickersInteraction";
 
 type props = {
   id: string;
@@ -27,11 +22,13 @@ type props = {
 };
 function Component(props: props): ReactElement {
   const { textColor, id, initialDateTime, isDateTimeEnabled } = props;
-  const [handleDatePress, handleTimePress, date] = useExpanded_DateTime(
+  const [date] = useUpdateDateTimeValues(
     id,
     isDateTimeEnabled,
     initialDateTime,
   );
+  const [handleDatePress, handleTimePress] =
+    useDateTimePickersInteraction(initialDateTime);
 
   return (
     <>
