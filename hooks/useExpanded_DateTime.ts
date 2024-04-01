@@ -51,20 +51,17 @@ export function useExpanded_DateTime(
 
   useFocusEffect(() => {
     return () => {
-      let dateValue = initialDateTime?.toLocaleDateString();
-      let timeValue = initialDateTime?.toLocaleTimeString();
-
-      if (isDateTimeEnabled) {
-        dateValue = date.toLocaleDateString();
-        timeValue = date.toLocaleTimeString();
-      }
       setAllTodos((prev) =>
         prev.map((todo) =>
           todo.id == id
             ? {
                 ...todo,
-                dueDate: isDateTimeEnabled ? dateValue : undefined,
-                dueTime: isDateTimeEnabled ? timeValue : undefined,
+                dueDate: isDateTimeEnabled
+                  ? date.toLocaleDateString()
+                  : undefined,
+                dueTime: isDateTimeEnabled
+                  ? date.toLocaleTimeString()
+                  : undefined,
               }
             : todo,
         ),

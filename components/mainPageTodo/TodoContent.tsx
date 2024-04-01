@@ -1,7 +1,6 @@
-import { Box } from "@gluestack-ui/themed";
+import { Box, Text } from "@gluestack-ui/themed";
 import { memo, type ReactElement } from "react";
 import { AnimatedTextCross } from "./AnimatedTextCross";
-import { TodoText } from "./TodoText";
 
 function Component(props: TodoContentProps): ReactElement {
   const { isTodoCompleted, animationDuration, value } = props;
@@ -11,7 +10,13 @@ function Component(props: TodoContentProps): ReactElement {
         isTodoCompleted={isTodoCompleted}
         animationDuration={animationDuration}
       />
-      <TodoText value={value} />
+      <Text
+        color={isTodoCompleted ? "gray" : "white"}
+        mr={10}
+        numberOfLines={1}
+        ellipsizeMode="tail">
+        {value}
+      </Text>
     </Box>
   );
 }
