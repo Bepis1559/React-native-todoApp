@@ -22,4 +22,15 @@ export class TodoModel implements Itodo {
     this.dueTime = dueTime;
     this.remarks = remarks;
   }
+
+  toObject() {
+    return {
+      id: this.id,
+      value: this.value,
+      isCompleted: this.isCompleted,
+      dueDate: this.dueDate,
+      dueTime: this.dueTime,
+      remarks: this.remarks,
+    };
+  }
 }
