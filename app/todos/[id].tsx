@@ -1,29 +1,24 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import { AppContainer } from "../../wrappers/AppContainer";
 import { Expanded_headerRight } from "../../components/expandedTodo/Expanded_headerRight";
 import { Expanded_content } from "../../components/expandedTodo/Expanded_content";
 import { Expanded_remarks } from "../../components/expandedTodo/Expanded_remarks";
-import { useDynamicRoute } from "../../hooks/useDynamicRoute";
+import { useInitalExpandedTodo } from "../../hooks/useInitalExpandedTodo";
 import { Expanded_DateTime } from "../../components/expandedTodo/Expanded_DateTime";
 import { Expanded_Delete } from "../../components/expandedTodo/Expanded_Delete";
 import { Box, Switch } from "@gluestack-ui/themed";
-import {
-  ExpandedTodoDateTimeSwtichStyle,
-  ExpanedTodoDateStyle,
-} from "../../styles/ExpandedTodoStyle";
+import { ExpandedTodoDateTimeSwtichStyle } from "../../styles/ExpandedTodoStyle";
+import { useUpdateRemarksAndValue } from "../../hooks/useUpdateRemarksAndValue";
+import { isTextContentInteractedWithAtom } from "../../context/expandedTodoContext";
+import { useAtomValue } from "jotai";
 export default function Page(): ReactElement {
-  const [
-    id,
-    isCompleted,
-    navigation,
-    isInteracting,
-    valueState,
-    setValueState,
-    textColor,
-    remarksState,
-    setRemarksState,
-    initialDateTime,
-  ] = useDynamicRoute();
+  const textColor = useRef("#528deb");
+  const isInteracting = useAtomValue(isTextContentInteractedWithAtom);
+
+  const [id, isCompleted, value, navigation, remarks, initialDateTime] =
+    useInitalExpandedTodo();
+  const [valueState, setValueState, remarksState, setRemarksState] =
+    useUpdateRemarksAndValue(id, value, remarks);
   const [isDateTimeEnabled, setIsDateTimeEnabled] = useState(
     initialDateTime ? true : false,
   );
@@ -41,12 +36,12 @@ export default function Page(): ReactElement {
         setContent={setValueState}
         id={id}
         completed={isCompleted}
-        textColor={textColor}
+        textColor={textColor.current}
       />
       <Expanded_DateTime
         isDateTimeEnabled={isDateTimeEnabled}
         id={id}
-        textColor={textColor}
+        textColor={textColor.current}
         initialDateTime={initialDateTime}
       />
       <Box style={ExpandedTodoDateTimeSwtichStyle}>
@@ -59,7 +54,7 @@ export default function Page(): ReactElement {
 
       <Expanded_remarks
         remarks={remarksState}
-        textColor={textColor}
+        textColor={textColor.current}
         setRemarksState={setRemarksState}
       />
 

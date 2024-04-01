@@ -72,12 +72,8 @@ type Expanded_TextContentProps = {
 type useDynamicRouteReturnType = [
   id: string,
   isCompleted: string,
+  value: string,
   navigation: NavigationProp<ReactNavigation.RootParamList>,
-  isInteracting: boolean,
-  valueState: string,
-  setValueState: Dispatch<SetStateAction<string>>,
-  textColor: string,
-  remarksState: string,
-  setRemarksState: Dispatch<SetStateAction<string>>,
+  remarks?: string,
   initialDateTime?: Date,
 ];
