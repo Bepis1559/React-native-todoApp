@@ -12,7 +12,6 @@ import {
   ExpanedTodoDateStyle,
 } from "../../styles/ExpandedTodoStyle";
 import { useUpdateDateTimeValues } from "../../hooks/useUpdateDateTimeValues";
-import { useDateTimePickersInteraction } from "../../hooks/useDateTimePickersInteraction";
 
 type props = {
   id: string;
@@ -22,13 +21,11 @@ type props = {
 };
 function Component(props: props): ReactElement {
   const { textColor, id, initialDateTime, isDateTimeEnabled } = props;
-  const [date] = useUpdateDateTimeValues(
+  const [handleDatePress, handleTimePress, date] = useUpdateDateTimeValues(
     id,
     isDateTimeEnabled,
     initialDateTime,
   );
-  const [handleDatePress, handleTimePress] =
-    useDateTimePickersInteraction(initialDateTime);
 
   return (
     <>

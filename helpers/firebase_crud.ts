@@ -4,34 +4,45 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { type TodoModel } from "../models/TodoModel";
+import { TodoModel } from "../models/TodoModel";
 
+const collectionName = "todos";
 export async function addTodo(todo: TodoModel) {
   try {
-    const collectionRef = collection(db, "todos");
-    await addDoc(collectionRef, todo.toObject());
+    const { id, value, isCompleted, dueDate, dueTime, remarks } = todo;
+    const todoObj: TodoModel = {
+      id: id,
+      value: value,
+      isCompleted: isCompleted,
+      dueDate: dueDate,
+      dueTime: dueTime,
+      remarks: remarks,
+    };
+    await setDoc(doc(db, collectionName, todo.id), todoObj);
   } catch (error) {
     console.error(error);
   }
 }
+
 export async function getTodos() {
   let todos;
   try {
-    const collectionRef = collection(db, "todos");
+    const collectionRef = collection(db, collectionName);
     const { docs } = await getDocs(collectionRef);
     todos = docs.map((doc) => doc.data()) as TodoModel[];
   } catch (error) {
     console.error(error);
   }
-  return todos;
+  return todos ?? [];
 }
 
 export async function updateTodo(id: string, updatedTodo: TodoModel) {
   try {
-    const docRef = doc(db, "todos", id);
+    const docRef = doc(db, collectionName, id);
     const newDoc = { ...updatedTodo };
     await updateDoc(docRef, newDoc);
   } catch (error) {
@@ -39,10 +50,10 @@ export async function updateTodo(id: string, updatedTodo: TodoModel) {
   }
 }
 
-export async function deleteTodo() {
+export async function deleteTodo(id: string) {
   try {
-    const docRef = doc(db, "todos", "Nl3mV3ktVUxT5hD34rHu");
-    deleteDoc(docRef);
+    const docRef = doc(db, collectionName, id);
+    await deleteDoc(docRef);
   } catch (error) {
     console.error(error);
   }

@@ -1,7 +1,6 @@
-1. DB
+1. Fix keyboard hiding remarks
 2. Overdue notifications
 3. Add readme
-
 
 
 

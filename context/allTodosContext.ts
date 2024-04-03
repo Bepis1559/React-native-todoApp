@@ -1,5 +1,4 @@
 import { atom } from "jotai";
-import { getTodos } from "../helpers/getTodos";
+import { TodoModel } from "../models/TodoModel";
 
-const allTodos = getTodos();
-export const allTodosAtom = atom(allTodos);
+export const allTodosAtom = atom<TodoModel[]>([]);

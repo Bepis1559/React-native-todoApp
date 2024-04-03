@@ -1,6 +1,6 @@
 import type { StyleProp, TextStyle, ViewStyle } from "react-native";
 
-const baseStyle: StyleProp<ViewStyle> = {
+export const baseStyle: StyleProp<ViewStyle> = {
   shadowColor: "black",
   elevation: 5,
   flexDirection: "row",
