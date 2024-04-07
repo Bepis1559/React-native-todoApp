@@ -10,7 +10,7 @@ import { type ReactElement, memo } from "react";
 
 function Component(): ReactElement {
   return (
-    <ModalHeader marginBottom={5} marginTop={5}>
+    <ModalHeader>
       <Heading textAlign="center" flex={1} size="lg">
         Add Todo
       </Heading>

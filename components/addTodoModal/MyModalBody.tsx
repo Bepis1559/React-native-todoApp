@@ -37,7 +37,7 @@ function Component(props: props): ReactElement {
   return (
     <ModalBody>
       <Input
-        marginTop={10}
+        marginBottom={13}
         borderRadius={10}
         borderColor="#333"
         borderWidth={1}
@@ -49,11 +49,7 @@ function Component(props: props): ReactElement {
           placeholder="Enter todo here"
         />
       </Input>
-      <Box
-        alignItems="center"
-        marginTop={14}
-        flexDirection="row"
-        justifyContent="flex-start">
+      <Box alignItems="center" flexDirection="row" justifyContent="flex-start">
         <Button
           isDisabled={!isDateTimeEnabled}
           onPress={() => showMode("date")}
