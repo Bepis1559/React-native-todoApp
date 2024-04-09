@@ -44,7 +44,7 @@ export default function RootLayout() {
         onLayout={onLayoutRootView}>
         {isLoading ? (
           <AppContainer>
-            <Spinner size="large" margin={"auto"} top={"50%"} color={"white"} />
+            <Spinner size="large" margin={"auto"} color={"white"} />
           </AppContainer>
         ) : (
           <Stack>
