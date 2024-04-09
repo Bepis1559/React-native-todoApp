@@ -77,3 +77,12 @@ type useDynamicRouteReturnType = [
   remarks?: string,
   initialDateTime?: Date,
 ];
+
+type addModalFooterProps = {
+  todoValue: string;
+  closeModal: () => void;
+  date: Date;
+  isDateTimeEnabled: boolean;
+  setTodoValue: Dispatch<SetStateAction<string>>;
+  setIsDateTimeEnabled: Dispatch<SetStateAction<boolean>>;
+};

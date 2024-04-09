@@ -36,3 +36,6 @@ yarn-error.*
 
 # firebase
 /fireBaseConfig.ts
+
+# project info
+/app.json

@@ -1,13 +1,8 @@
 import { type AppStateStatus } from "react-native";
-import {
-  addTodo,
-  deleteTodo,
-  getTodos,
-  updateTodo,
-} from "../helpers/firebase_crud";
+import { addTodo, deleteTodo, getTodos, updateTodo } from "./firebase_crud";
 
 import { TodoModel } from "../models/TodoModel";
-import { areTodosEqual } from "../helpers/areTodosEqual";
+import { areTodosEqual } from "./areTodosEqual";
 
 export async function updateDbOnAppStateChange(
   appState: { current: AppStateStatus },

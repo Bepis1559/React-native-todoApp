@@ -12,7 +12,6 @@ export default function Page() {
         <NewTodoModal />
         <AllToDos />
       </AppContainer>
-
       <AddBtn />
     </Box>
   );

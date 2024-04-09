@@ -2,27 +2,22 @@ import { GluestackUIProvider, StatusBar, Spinner } from "@gluestack-ui/themed";
 import { SplashScreen, Stack } from "expo-router";
 import { config } from "../gluestack.config";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useFonts } from "expo-font";
 import { getBackgroundColor, getTextColor } from "../styles/colors";
-import * as Notifications from "expo-notifications";
 import { Appearance } from "react-native";
 import { useAppState } from "../hooks/useAppState";
 import { AppContainer } from "../wrappers/AppContainer";
 import { useSetTodosToDbData } from "../hooks/useSetTodosToDbData";
-
-// Notifications.setNotificationHandler({
-//   handleNotification: async () => ({
-//     shouldShowAlert: true,
-//     shouldPlaySound: false,
-//     shouldSetBadge: false,
-//   }),
-// });
+import { useRegisterNotificationHandler } from "../notifications/useRegisterNotificationHandler";
+import { useAddNotificationListener } from "../notifications/useAddNotificationListener";
 
 export default function RootLayout() {
   const [isLoading] = useSetTodosToDbData();
-
+  useRegisterNotificationHandler();
+  useAddNotificationListener();
   useAppState();
+
   Appearance.setColorScheme("dark");
   const [fontsLoaded, fontError] = useFonts({
     "Inter-Bold": require("../assets/fonts/Inter-Bold.ttf"),

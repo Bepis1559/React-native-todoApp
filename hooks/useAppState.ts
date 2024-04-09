@@ -4,7 +4,7 @@ import {
   type AppStateStatus,
   type NativeEventSubscription,
 } from "react-native";
-import { updateDbOnAppStateChange } from "./updateDbOnAppStateChange";
+import { updateDbOnAppStateChange } from "../helpers/updateDbOnAppStateChange";
 import { useAtomValue } from "jotai";
 import { allTodosAtom } from "../context/allTodosContext";
 

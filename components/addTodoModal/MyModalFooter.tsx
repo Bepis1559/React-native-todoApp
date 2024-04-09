@@ -10,22 +10,15 @@ import {
 import { allTodosAtom } from "../../context/allTodosContext";
 import { TodoModel } from "../../models/TodoModel";
 
-type footerProps = {
-  todoValue: string;
-  closeModal: () => void;
-  date: Date;
-  isDateTimeEnabled: boolean;
-  setTodoValue: Dispatch<SetStateAction<string>>;
-  setIsDateTimeEnabled: Dispatch<SetStateAction<boolean>>;
-};
-function Component({
-  closeModal,
-  date,
-  todoValue,
-  isDateTimeEnabled,
-  setTodoValue,
-  setIsDateTimeEnabled,
-}: footerProps): ReactElement {
+function Component(props: addModalFooterProps): ReactElement {
+  const {
+    closeModal,
+    date,
+    todoValue,
+    isDateTimeEnabled,
+    setTodoValue,
+    setIsDateTimeEnabled,
+  } = props;
   const setTodos = useSetAtom(allTodosAtom);
   const handleClose = useCallback(() => closeModal(), []);
   const handleAddingTodo = useCallback(() => {
