@@ -1,15 +1,11 @@
 import { Box, Button, ButtonText, ModalFooter } from "@gluestack-ui/themed";
 import { useSetAtom } from "jotai";
-import {
-  type ReactElement,
-  memo,
-  useCallback,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { type ReactElement, memo, useCallback } from "react";
 import { allTodosAtom } from "../../context/allTodosContext";
 import { TodoModel } from "../../models/TodoModel";
-
+import { todosAndNotificatioIdAtom } from "../../context/todosAndNotificationIdContext";
+import { v4 as uuidv4 } from "uuid";
+import { attachNotificationToTodo } from "../../notifications/attachNotificationToTodo";
 function Component(props: addModalFooterProps): ReactElement {
   const {
     closeModal,
@@ -20,8 +16,10 @@ function Component(props: addModalFooterProps): ReactElement {
     setIsDateTimeEnabled,
   } = props;
   const setTodos = useSetAtom(allTodosAtom);
+  const setTodosAndNotificationIds = useSetAtom(todosAndNotificatioIdAtom);
   const handleClose = useCallback(() => closeModal(), []);
-  const handleAddingTodo = useCallback(() => {
+  const addTodo = useCallback(async () => {
+    const todoId = uuidv4();
     setTodos((prev) => {
       let dueDate = undefined;
       let dueTime = undefined;
@@ -29,10 +27,10 @@ function Component(props: addModalFooterProps): ReactElement {
         dueDate = date.toLocaleDateString();
         dueTime = date.toLocaleTimeString();
       }
-
       return [
         ...prev,
         new TodoModel(
+          todoId,
           todoValue == "" ? "Empty todo" : todoValue,
           dueDate,
           dueTime,
@@ -42,11 +40,22 @@ function Component(props: addModalFooterProps): ReactElement {
     closeModal();
     setIsDateTimeEnabled(false);
     setTodoValue("");
+
+    attachNotificationToTodo(
+      isDateTimeEnabled,
+      todoId,
+      setTodosAndNotificationIds,
+      todoValue,
+      date,
+    );
   }, [todoValue, date]);
   return (
     <ModalFooter marginTop={-10} justifyContent="space-between">
       <FooterButton closeModal={handleClose} actionType="negative" />
-      <FooterButton closeModal={handleAddingTodo} actionType="primary" />
+      <FooterButton
+        closeModal={async () => await addTodo()}
+        actionType="primary"
+      />
     </ModalFooter>
   );
 }

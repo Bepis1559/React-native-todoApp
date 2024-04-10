@@ -11,21 +11,22 @@ import {
   Date_Time_IconsStyle,
   ExpanedTodoDateStyle,
 } from "../../styles/ExpandedTodoStyle";
-import { useUpdateDateTimeValues } from "../../hooks/useUpdateDateTimeValues";
 
 type props = {
-  id: string;
   textColor: string;
-  initialDateTime?: Date;
+  handleDatePress: () => void;
+  handleTimePress: () => void;
+  date: Date;
   isDateTimeEnabled: boolean;
 };
 function Component(props: props): ReactElement {
-  const { textColor, id, initialDateTime, isDateTimeEnabled } = props;
-  const [handleDatePress, handleTimePress, date] = useUpdateDateTimeValues(
-    id,
+  const {
+    textColor,
+    date,
+    handleDatePress,
+    handleTimePress,
     isDateTimeEnabled,
-    initialDateTime,
-  );
+  } = props;
 
   return (
     <>

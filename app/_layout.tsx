@@ -6,9 +6,9 @@ import { useCallback } from "react";
 import { useFonts } from "expo-font";
 import { getBackgroundColor, getTextColor } from "../styles/colors";
 import { Appearance } from "react-native";
-import { useAppState } from "../hooks/useAppState";
+import { useAppState } from "../hooks/layout/useAppState";
 import { AppContainer } from "../wrappers/AppContainer";
-import { useSetTodosToDbData } from "../hooks/useSetTodosToDbData";
+import { useSetTodosToDbData } from "../hooks/layout/useSetTodosToDbData";
 import { useRegisterNotificationHandler } from "../notifications/useRegisterNotificationHandler";
 import { useAddNotificationListener } from "../notifications/useAddNotificationListener";
 

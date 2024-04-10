@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 import { useSetAtom } from "jotai";
 // import { allTodosAtom } from "../context/allTodosContext";
-import { getTodos } from "../helpers/firebase_crud";
-import { allTodosAtom } from "../context/allTodosContext";
+import { getTodos } from "../../helpers/firebase_crud";
+import { allTodosAtom } from "../../context/allTodosContext";
 
 type returnType = [refreshing: boolean, onRefresh: () => void];
 export function useRefresh(): returnType {

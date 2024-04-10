@@ -9,13 +9,14 @@ export class TodoModel implements Itodo {
   remarks?: string;
 
   constructor(
+    id = uuidv4(),
     value: string,
     dueDate = "",
     dueTime = "",
     remarks = "",
     isCompleted = false,
   ) {
-    this.id = uuidv4();
+    this.id = id;
     this.value = value;
     this.isCompleted = isCompleted;
     this.dueDate = dueDate;

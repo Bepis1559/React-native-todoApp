@@ -29,7 +29,7 @@ export async function registerForPushNotificationsAsync() {
     // https://docs.expo.dev/push-notifications/push-notifications-setup/#configure-projectid
     token = (
       await Notifications.getExpoPushTokenAsync({
-        projectId: "90d60947-871a-460e-bbd2-77835f08cb85",
+        projectId: process.env.EAS_PROJECT_ID,
       })
     ).data;
     console.log(token);

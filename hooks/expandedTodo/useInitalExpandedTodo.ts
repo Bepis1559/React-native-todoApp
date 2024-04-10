@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useMemo } from "react";
-import { converDateAndTimeToDateObject } from "../helpers/converDateAndTimeToDateObject";
+import { converDateAndTimeToDateObject } from "../../helpers/converDateAndTimeToDateObject";
 import { isValid } from "date-fns";
 
 export function useInitalExpandedTodo(): useDynamicRouteReturnType {

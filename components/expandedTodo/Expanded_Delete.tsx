@@ -1,7 +1,7 @@
 import { Box, Button, ButtonIcon, TrashIcon } from "@gluestack-ui/themed";
 import { memo, type ReactElement } from "react";
 import { Expanded_DeleteStyle } from "../../styles/ExpandedTodoStyle";
-import { useDeleteTodo } from "../../hooks/useDeleteTodo";
+import { useDeleteTodo } from "../../hooks/expandedTodo/useDeleteTodo";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type props = {

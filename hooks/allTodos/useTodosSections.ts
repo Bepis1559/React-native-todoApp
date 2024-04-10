@@ -1,12 +1,12 @@
 import { useAtomValue } from "jotai";
-import { allTodosAtom } from "../context/allTodosContext";
-import { sortTodosByDate } from "../helpers/sortTodosByDate";
+import { allTodosAtom } from "../../context/allTodosContext";
+import { sortTodosByDate } from "../../helpers/sortTodosByDate";
 import {
   getCompletedTodos,
   getLaterTodos,
   getNoDateTodos,
   getOverdueTodos,
-} from "../helpers/getFilteredTodosForSpecificSection";
+} from "../../helpers/getFilteredTodosForSpecificSection";
 import { useMemo } from "react";
 
 type returnType = [todosSection[]];

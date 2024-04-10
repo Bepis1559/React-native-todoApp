@@ -1,7 +1,7 @@
 import { useFocusEffect } from "expo-router";
 import { useSetAtom } from "jotai";
 import { type Dispatch, type SetStateAction, useState } from "react";
-import { allTodosAtom } from "../context/allTodosContext";
+import { allTodosAtom } from "../../context/allTodosContext";
 
 type returnType = [
   valueState: string,
